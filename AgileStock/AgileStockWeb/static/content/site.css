@@ -1,0 +1,95 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    margin: 0;
+
+    & #logo {
+        font-size: 32px;
+        font-weight: bold;
+    }
+
+    & nav {
+        display: inline-block;
+        height: 100vh;
+
+        & ul {
+            list-style: none;
+            padding: 0;
+            width: 175px;
+        }
+
+        & li {
+            margin-block: 1rem;
+            padding: 1rem;
+            text-align: center;
+            display: block;
+
+            & a {
+                padding: .5rem;
+                text-decoration: none;
+                border-radius: 1rem;
+                padding-right: 35px;
+
+                &:hover {
+                    background-color: lightgreen;
+                }
+            }
+
+            & svg {
+                margin-right: 15px;
+            }
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+main {
+    &.body-content {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+/* Set padding to keep content from hitting the edges */
+
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
