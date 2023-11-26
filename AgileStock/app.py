@@ -9,16 +9,6 @@ from datetime import datetime
 #from AgileStockWeb.models import Inventory
 
  #import SQL
-import os
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.sql import func
-
-#SQL
-app.config['SQLALCHEMY_DATABASE_URI'] =\
-    'mysql:///root:ALT4c352@localhost:3306/agilestockinv'
-app.config['SQLALCHEMNY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
-
 
 #an inventory object
 #keyBoard = Inventory.Inventory("Keyboard", 0)
