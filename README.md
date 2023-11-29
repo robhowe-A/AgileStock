@@ -2,6 +2,17 @@
 
 CSC480A - AgileStock inventory management application
 
+### NOTE: Before cloning the repro, be sure to have git installed  
+- Windows: GitForWindows is a good installer. It adds terminal to right-click options as a plus!  
+  ```
+  https://gitforwindows.org/
+  ```
+  
+- Linux: use the terminal command, like below, for your OS.  
+  ``` Bash
+  # apt-get install git
+  ```
+
 ## Development Environment
 
 1. Clone the repro to a local folder
