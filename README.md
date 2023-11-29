@@ -49,4 +49,4 @@ app.config['MYSQL_DB'] = '<database name>'
 - MySQL Database  
   > MySQL Server (Full) - community (mysql-installer-community-8.0.35.0.msi)  
   > MySQL Workbench (requires C++ Redistributable installation)  
-  > Download link: https://dev.mysql.com/downloads/installer/  
+  > Download link: https://dev.mysql.com/downloads/installer/    (mysql-installer-community-8.0.35.0.msi)  
