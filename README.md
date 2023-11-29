@@ -46,3 +46,7 @@ app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = '<root's password>'
 app.config['MYSQL_DB'] = '<database name>'
 ```
+- MySQL Database  
+  > MySQL Server (Full)  
+  > MySQL Workbench (requires C++ Redistributable installation)  
+  > Download link: https://dev.mysql.com/downloads/installer/  
