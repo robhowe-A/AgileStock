@@ -1,5 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Commissioner:wght@400;700;800&family=Orbitron:wght@400;600;700&display=swap');
+
 * {
     box-sizing: border-box;
+}
+
+:root {
+    --clr-White: #ffffff;
 }
 
 body {
@@ -8,37 +14,66 @@ body {
     justify-content: flex-start;
     flex-shrink: 0;
     margin: 0;
+    font-family: 'Orbitron';
+
+    & main {
+        font-family: 'SourceSansPro';
+    }
+
+    & a {
+        &:active {
+            text-decoration-color: var(--clr-White);
+        }
+
+        &:has(#logo) {
+            text-decoration: none;
+        }
+    }
 
     & #logo {
         font-size: 32px;
         font-weight: bold;
+        color: var(--clr-White);
     }
 
     & nav {
         display: inline-block;
         height: 100vh;
+        background-color: #536Ca6;
+        color: var(--clr-White);
+
+        & div:nth-child(1) {
+            background-color: #092D80;
+            padding: 1em;
+        }
+
+        & hr {
+            margin: 0;
+        }
 
         & ul {
             list-style: none;
             padding: 0;
-            width: 175px;
+            width: 100%;
         }
 
         & li {
-            margin-block: 1rem;
-            padding: 1rem;
+            margin-block: 3rem;
             text-align: center;
             display: block;
 
             & a {
-                padding: .5rem;
+                padding: .5rem 1rem;
                 text-decoration: none;
                 border-radius: 1rem;
                 padding-right: 35px;
+                color: var(--clr-White);
 
                 &:hover {
                     background-color: lightgreen;
                 }
+
+
             }
 
             & svg {
