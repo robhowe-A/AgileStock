@@ -7,20 +7,26 @@
     <p class="lead">View a list of inventory items as scanned from AgileStock scanner.
     </p>
     <div>
-        <h2>Sites</h2>
-        <p>
-            Flask gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
         <div>
-            <h3>Site A</h3>
-            <p>The site maintains the financial sector of the company</p>
+            <h3>{{testBookN.title}}</h3>
+            <ul>
+                <li>Author: {{testBookN.author}}</li>
+                <li>Genre: {{testBookN.genre}}</li>
+                <li>ISBN: {{testBookN.isbn}}</li>
+                <li>Published Date: {{testBookN.publishedDate}}</li>
+                <li>Publisher: {{testBookN.publisher}}</li>
+            </ul>
         </div>
         <div>
-            <h3>Site B</h3>
-            <p>Site B is where the servers are.</p>
+            <h3>Button Pressed: {{ booktitle }}</h3>
+            <form method="post">
+                <label for="title">Book Title</label>
+                <input id="title" name="title" type="text">
+                <input type="submit" value="POST form method" >
+            </form>
         </div>
+        
+        {% block scripts %}{% endblock %}
     </div>
 </div>
 

@@ -5,9 +5,9 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-import AgileStockWeb.views
-from AgileStockWeb.models.out_formatter import logger
-from AgileStockWeb.database import Database
+
+#from AgileStockWeb.models.out_formatter import logger
+from AgileStockWeb.database import CreateDatabase
 
 
 #app.config is a hash variable needed for a connection string
@@ -17,9 +17,7 @@ app.config['MYSQL_PASSWORD'] = '4LocalDB'
 app.config['MYSQL_DB'] = 'agilestockinv'
 
 
-logger.info(f"Initializing database")
-db = Database(app)
-logger.info(f"Database created")
+db = CreateDatabase(app)
 
 
 from AgileStockWeb.models.book import Book
@@ -32,6 +30,8 @@ wolfBook = Book(
     "Action",
     "9781501155680"
 )
-
 db.insert_intoBOOK(wolfBook.title, wolfBook.author, wolfBook.publisher, wolfBook.publishedDate, wolfBook.genre, wolfBook.isbn)
 
+from AgileStockWeb.views import NewTitle
+for title in NewTitle:
+    print(f'{title}, ')

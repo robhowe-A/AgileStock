@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div>
+    <h3>Button Pressed: {{ booktitle }}</h3>
+    <form method="post">
+        <label for="title">Book Title</label>
+        <input name="title" type="text">
+        <input type="submit" value="POST form method" >
+    </form>
+</div>
+
+{% endblock %}
