@@ -5,7 +5,6 @@ This script runs the AgileStockWeb application using a development server.
 from os import environ
 from AgileStockWeb import app
 
-
 if __name__ == '__main__':
     HOST = environ.get('SERVER_HOST', 'localhost')
     try:
@@ -15,6 +14,4 @@ if __name__ == '__main__':
         # change the port number.
     except ValueError:
         PORT = 5555
-    
     app.run(HOST, PORT)
-

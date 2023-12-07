@@ -2,21 +2,6 @@ import os
 import pymysql
 from AgileStockWeb.models.out_formatter import logger
 
-#Connextion API call cannot take object methods
-#Create connection functions without instance
-from AgileStockWeb import app
-import json
-
-def connectAPIFetch():
-    mysql = pymysql.connect(host = 'localhost', user = 'root', password = '4LocalDB', db = 'agilestockinv')
-    cursor = mysql.cursor()
-    cursor.execute('SELECT * FROM AS_ITEM')
-    result = cursor.fetchall()
-    print(f"API list: {list(result)}")
-    print(f"JSON: {json.dumps(result)}")
-    return result
-
-
 # MySQL Database
 # Function: create_table creates a table in MySQL database
 class Database:
@@ -43,10 +28,8 @@ class Database:
         cursor.execute(f'{SQLcommand!s}')
         result = cursor.fetchall()
         cursor.close()
-        for row in result:
-            print(f"Row: {row}")
-        for l in result:
-            print(f"List: {list(l)}")
+        # for row in result:
+        #     print(row)
         return result
 
 class CreateDatabase(Database):
@@ -80,7 +63,7 @@ class CreateDatabase(Database):
             SQLcommand = '''
                 CREATE TABLE IF NOT EXISTS AS_ITEM (
                 INVENTORYID INT AUTO_INCREMENT PRIMARY KEY,
-                BARCODE INT UNIQUE,
+                BARCODE INT,
                 PRODUCTNAME VARCHAR(255) NOT NULL,
                 PRODUCTCATEGORY VARCHAR(255) NOT NULL,
                 INVENTORYSKU VARCHAR(255) NOT NULL
@@ -101,6 +84,20 @@ class CreateDatabase(Database):
             logger.info(f"BOOK Inserted ===== Title: {title}")
         except Exception as e:
             logger.error(f"Error with INSERT into table BOOK{e}")
+    
+    def fetch_fromAS_ITEM(self):
+        try:
+            logger.info(f"Inserting 'AS_ITEM' =====")
+            result = self.runSQLfetchall(f'''
+                SELECT * FROM AS_ITEM
+            ''')
+            logger.info(f"AS_ITEM successful fetch!")
+            return result
+        except Exception as e:
+            logger.error(f"Error with INSERT into table AS_ITEM{e}")
+
+
+
 
     #TODO: Create select statement to get a book from the database
     # def select_fromBOOK(self):
@@ -112,28 +109,15 @@ class CreateDatabase(Database):
     #         logger.info(f"BOOK Inserted ===== Title: {title}")
     #     except Exception as e:
     #         logger.error(f"Error with INSERT into table BOOK{e}")
-    
-    def fetch_fromAS_ITEM(self):
-        try:
-            logger.info(f"Fetching 'AS_ITEM' =====")
-            result = self.runSQLfetchall(f'''
-                SELECT * FROM AS_ITEM
-            ''')
-            logger.info(f"AS_ITEM successful fetch!")
-            return result
-        except Exception as e:
-            logger.error(f"Error with fetch from table AS_ITEM {e}")
 
-    #API_InventoryFromScannerApp = AS_Item(12345, "bookofsomesort", "action", "5432112345ABCD")
-    def insert_intoAS_ITEM(self, barcode, productName, productCategory, intenvorySKU):
+    #API_InventoryFromScannerApp = AS_Item(12345, "bookofsomesort", "action", 1, "5432112345ABCD")
+    def insert_intoAS_ITEM(self, barcode, productName, productCategory, inventoryID, intenvorySKU):
         try:
             logger.info(f"Inserting 'AS_ITEM' =====")
             self._runSQL(f'''
-                INSERT INTO AS_ITEM (BARCODE, PRODUCTNAME, PRODUCTCATEGORY, INVENTORYSKU)
-                VALUES ('{barcode}', '{productName}', '{productCategory}', '{intenvorySKU}');
+                INSERT INTO AS_ITEM (BARCODE, PRODUCTNAME, PRODUCTCATEGORY, INVENTORYID, INVENTORYSKU)
+                VALUES ('{barcode}', '{productName}', '{productCategory}', '{inventoryID}', '{intenvorySKU}');
                 ''')
             logger.info(f"AS_ITEM Inserted ===== ITEM: {productName}")
         except Exception as e:
             logger.error(f"Error with INSERT into table AS_ITEM{e}")
-
-
