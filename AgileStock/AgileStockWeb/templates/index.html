@@ -25,6 +25,16 @@
                 <input type="submit" value="POST form method" >
             </form>
         </div>
+        <div>
+            <h3>{{result}}</h3>
+            <ul>
+                <li>ID: {{result[0]}}</li>
+                <li>Barcode: {{result[1]}}</li>
+                <li>Name: {{result[2]}}</li>
+                <li>Category: {{result[3]}}</li>
+                <li>SKU: {{result[4]}}</li>
+            </ul>
+        </div>
         
         {% block scripts %}{% endblock %}
     </div>
