@@ -4,14 +4,11 @@ Routes and views for the flask application.
 
 from datetime import datetime
 from flask import render_template, request
-# from AgileStockWeb import app, db
 from AgileStockWeb import app, db
-
-
-from AgileStockWeb.models.book import Book
 from AgileStockWeb import wolfBook, AS_ITEMresult
 
 NewTitle = []
+
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/home', methods=['GET', 'POST'])
@@ -19,7 +16,6 @@ def home():
     """Renders the home page."""
     # TODO: create code to get the book from database
     # TODO: create code to update book in the database
-    print(type(AS_ITEMresult))
     if request.method == 'POST':
         title = request.form['title']
         NewTitle.append(title)
@@ -33,7 +29,7 @@ def home():
             'index.html',
             title='Inventory',
             testBookN = wolfBook,
-            result = AS_ITEMresult[0],
+            result = AS_ITEMresult,
             year=datetime.now().year,
         )
 
@@ -47,7 +43,6 @@ def changetitle():
         NewTitle.append(title)
         return render_template('changetitle.html', title='Form', booktitle=title)
     return render_template('changetitle.html', title='Form')
-
 
 @app.route('/contact')
 def contact():

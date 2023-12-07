@@ -24,9 +24,8 @@ class Inventory:
         
 
 class AS_Item:
-    def __init__(self, barcode, productName, productCategory, inventoryID, intenvorySKU):
+    def __init__(self, barcode, productName, productCategory, intenvorySKU):
         self.barcode = barcode
         self.productName = productName
         self.productCategory = productCategory
-        self.inventoryID = inventoryID
         self.inventorySKU = intenvorySKU
