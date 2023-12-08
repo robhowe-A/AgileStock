@@ -89,9 +89,7 @@ def entities():
         print(item.inventorySKU)
         db.insert_intoAS_ITEM(item.barcode, item.productName, item.productCategory, item.inventorySKU)
         return {
-            'message': 'This endpoint creates an inventory item',
-            'method': request.method,
-		'body': request.json
+		'AS_Item': request.json
         }
 
 @app.route('/basic_api/inventoryitem/<int:entity_id>', methods=['GET', 'PUT', 'DELETE'])
