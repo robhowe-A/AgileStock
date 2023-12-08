@@ -22,15 +22,17 @@ class Database:
         self.mysql.commit()
         cursor.close()
 
-    def runSQLfetchall(self, SQLcommand):
+    def _runSQLfetchall(self, SQLcommand):
         cursor = self.mysql.cursor()
         print(SQLcommand)
         cursor.execute(f'{SQLcommand!s}')
         result = cursor.fetchall()
+        columns = [column[0] for column in cursor.description]
+        data = [dict(zip(columns, row)) for row in result]
         cursor.close()
         # for row in result:
         #     print(row)
-        return result
+        return data
 
 class CreateDatabase(Database):
     def __init__(self, app):
@@ -88,15 +90,13 @@ class CreateDatabase(Database):
     def fetch_fromAS_ITEM(self):
         try:
             logger.info(f"Inserting 'AS_ITEM' =====")
-            result = self.runSQLfetchall(f'''
+            result = self._runSQLfetchall(f'''
                 SELECT * FROM AS_ITEM
             ''')
             logger.info(f"AS_ITEM successful fetch!")
             return result
         except Exception as e:
             logger.error(f"Error with INSERT into table AS_ITEM{e}")
-
-
 
 
     #TODO: Create select statement to get a book from the database
@@ -111,6 +111,7 @@ class CreateDatabase(Database):
     #         logger.error(f"Error with INSERT into table BOOK{e}")
 
     #API_InventoryFromScannerApp = AS_Item(12345, "bookofsomesort", "action", 1, "5432112345ABCD")
+
     def insert_intoAS_ITEM(self, barcode, productName, productCategory, intenvorySKU):
         try:
             logger.info(f"Inserting 'AS_ITEM' =====")

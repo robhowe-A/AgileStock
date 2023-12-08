@@ -3,7 +3,7 @@ Routes and views for the flask application.
 """
 
 from datetime import datetime
-from flask import render_template, request
+from flask import render_template, request, jsonify
 # from AgileStockWeb import app, db
 from AgileStockWeb import app, db
 
@@ -69,30 +69,25 @@ def about():
         message='Your application description page.'
     )
 #################################  API  #################################
-import json 
 
-@app.route('/basic_api/inventoryitem', methods=['GET', 'POST'])
+@app.route('/api/inventoryitem', methods=['GET', 'POST'])
 def entities():
     if request.method == "GET":
         return {
-            'message': 'This endpoint returns a list of inventory items',
-            'method': request.method
+            'AS_Item(s)': db.fetch_fromAS_ITEM() #returns db data from fetch
         }
     if request.method == "POST":
-        print(f"Inbound string: {request.json}")
-        #itemstr = json.loads(request.json)
         item = AS_Item(
             request.json["barcode"],
             request.json["productName"],
             request.json["productCategory"],
             request.json["inventorySKU"])
-        print(item.inventorySKU)
-        db.insert_intoAS_ITEM(item.barcode, item.productName, item.productCategory, item.inventorySKU)
+        db.insert_intoAS_ITEM(item.barcode, item.productName, item.productCategory, item.inventorySKU) #inserts a new item into db
         return {
 		'AS_Item': request.json
         }
 
-@app.route('/basic_api/inventoryitem/<int:entity_id>', methods=['GET', 'PUT', 'DELETE'])
+@app.route('/api/inventoryitem/<int:entity_id>', methods=['GET', 'PUT', 'DELETE'])
 def entity(entity_id):
     if request.method == "GET":
         return {
