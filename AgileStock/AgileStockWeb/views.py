@@ -8,7 +8,7 @@ from flask import render_template, request
 from AgileStockWeb import app, db
 
 
-from AgileStockWeb.models.book import Book
+from AgileStockWeb.models.book import Book, AS_Item
 from AgileStockWeb import wolfBook, AS_ITEMresult
 
 NewTitle = []
@@ -68,3 +68,50 @@ def about():
         year=datetime.now().year,
         message='Your application description page.'
     )
+#################################  API  #################################
+import json 
+
+@app.route('/basic_api/inventoryitem', methods=['GET', 'POST'])
+def entities():
+    if request.method == "GET":
+        return {
+            'message': 'This endpoint returns a list of inventory items',
+            'method': request.method
+        }
+    if request.method == "POST":
+        print(f"Inbound string: {request.json}")
+        #itemstr = json.loads(request.json)
+        item = AS_Item(
+            request.json["barcode"],
+            request.json["productName"],
+            request.json["productCategory"],
+            request.json["inventorySKU"])
+        print(item.inventorySKU)
+        db.insert_intoAS_ITEM(item.barcode, item.productName, item.productCategory, item.inventorySKU)
+        return {
+            'message': 'This endpoint creates an inventory item',
+            'method': request.method,
+		'body': request.json
+        }
+
+@app.route('/basic_api/inventoryitem/<int:entity_id>', methods=['GET', 'PUT', 'DELETE'])
+def entity(entity_id):
+    if request.method == "GET":
+        return {
+            'id': entity_id,
+            'message': 'This endpoint should return the entity {} details'.format(entity_id),
+            'method': request.method
+        }
+    if request.method == "PUT":
+        return {
+            'id': entity_id,
+            'message': 'This endpoint should update the entity {}'.format(entity_id),
+            'method': request.method,
+		'body': request.json
+        }
+    if request.method == "DELETE":
+        return {
+            'id': entity_id,
+            'message': 'This endpoint should delete the entity {}'.format(entity_id),
+            'method': request.method
+        }

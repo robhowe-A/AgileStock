@@ -31,12 +31,10 @@ wolfBook = Book(
     "9781501155680"
 )
 
-APIexampleitem_InventoryFromScannerApp = AS_Item(12345, "bookofsomesort", "action", 12, "5432112345ABCD")
-#db.insert_intoBOOK(wolfBook.title, wolfBook.author, wolfBook.publisher, wolfBook.publishedDate, wolfBook.genre, wolfBook.isbn)
+APIexampleitem_InventoryFromScannerApp = AS_Item(12345, "bookofsomesort", "action", "5432112345ABCD")
 db.insert_intoAS_ITEM(APIexampleitem_InventoryFromScannerApp.barcode,
     APIexampleitem_InventoryFromScannerApp.productName,
     APIexampleitem_InventoryFromScannerApp.productCategory,
-    APIexampleitem_InventoryFromScannerApp.inventoryID,
     APIexampleitem_InventoryFromScannerApp.inventorySKU)
 AS_ITEMresult = db.fetch_fromAS_ITEM()
 

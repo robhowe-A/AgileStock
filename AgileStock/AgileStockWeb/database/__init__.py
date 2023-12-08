@@ -111,12 +111,12 @@ class CreateDatabase(Database):
     #         logger.error(f"Error with INSERT into table BOOK{e}")
 
     #API_InventoryFromScannerApp = AS_Item(12345, "bookofsomesort", "action", 1, "5432112345ABCD")
-    def insert_intoAS_ITEM(self, barcode, productName, productCategory, inventoryID, intenvorySKU):
+    def insert_intoAS_ITEM(self, barcode, productName, productCategory, intenvorySKU):
         try:
             logger.info(f"Inserting 'AS_ITEM' =====")
             self._runSQL(f'''
-                INSERT INTO AS_ITEM (BARCODE, PRODUCTNAME, PRODUCTCATEGORY, INVENTORYID, INVENTORYSKU)
-                VALUES ('{barcode}', '{productName}', '{productCategory}', '{inventoryID}', '{intenvorySKU}');
+                INSERT INTO AS_ITEM (BARCODE, PRODUCTNAME, PRODUCTCATEGORY, INVENTORYSKU)
+                VALUES ('{barcode}', '{productName}', '{productCategory}', '{intenvorySKU}');
                 ''')
             logger.info(f"AS_ITEM Inserted ===== ITEM: {productName}")
         except Exception as e:
