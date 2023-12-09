@@ -26,16 +26,24 @@
             </form>
         </div>
         <div>
-            {% for i in result %}
-            <h3>Inventory item: {{loop.index0}}</h3>
-            <ul>
-                <li>ID: {{i.INVENTORYID}}</li>
-                <li>Barcode: {{i.BARCODE}}</li>
-                <li>Name: {{i.PRODUCTNAME}}</li>
-                <li>Category: {{i.PRODUCTCATEGORY}}</li>
-                <li>SKU: {{i.INVENTORYSKU}}</li>
-            </ul>
+            <table>
+                <thead>
+                    <th>INVENTORYID</th>
+                    <th>BARCODE</th>
+                    <th>PRODUCTNAME</th>
+                    <th>PRODUCTCATEGORY</th>
+                    <th>INVENTORYSKU</th>
+                </thead>
+            {% for item in result %}
+            <tr>
+                <th>{{item.INVENTORYID}}</th>
+                <td>{{item.BARCODE}}</td>
+                <td>{{item.PRODUCTNAME}}</td>
+                <td>{{item.PRODUCTCATEGORY}}</td>
+                <td>{{item.INVENTORYSKU}}</td>
+            </tr>
             {%endfor%}
+        </table>
         </div>
         
         {% block scripts %}{% endblock %}

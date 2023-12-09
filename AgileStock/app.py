@@ -14,4 +14,4 @@ if __name__ == '__main__':
         # change the port number.
     except ValueError:
         PORT = 5555
-    app.run(HOST, PORT)
+    app.run(HOST, PORT, debug=False)

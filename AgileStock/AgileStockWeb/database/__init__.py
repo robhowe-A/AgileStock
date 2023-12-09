@@ -85,18 +85,18 @@ class CreateDatabase(Database):
                 ''')
             logger.info(f"BOOK Inserted ===== Title: {title}")
         except Exception as e:
-            logger.error(f"Error with INSERT into table BOOK{e}")
+            logger.error(f"Error with INSERT into table BOOK: {e}")
     
     def fetch_fromAS_ITEM(self):
         try:
-            logger.info(f"Inserting 'AS_ITEM' =====")
+            logger.info(f"Selecting 'AS_ITEM' =====")
             result = self._runSQLfetchall(f'''
                 SELECT * FROM AS_ITEM
             ''')
             logger.info(f"AS_ITEM successful fetch!")
             return result
         except Exception as e:
-            logger.error(f"Error with INSERT into table AS_ITEM{e}")
+            logger.error(f"Error with SELECT for table AS_ITEM: {e}")
 
 
     #TODO: Create select statement to get a book from the database
@@ -121,4 +121,4 @@ class CreateDatabase(Database):
                 ''')
             logger.info(f"AS_ITEM Inserted ===== ITEM: {productName}")
         except Exception as e:
-            logger.error(f"Error with INSERT into table AS_ITEM{e}")
+            logger.error(f"Error with INSERT into table AS_ITEM: {e}")

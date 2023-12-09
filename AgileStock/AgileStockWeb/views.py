@@ -19,13 +19,14 @@ def home():
     # TODO: create code to get the book from database
     # TODO: create code to update book in the database
     AS_ITEMresult = db.fetch_fromAS_ITEM()
-    print(f"type: {type(AS_ITEMresult)}, length: {len(AS_ITEMresult)}")
     if request.method == 'POST':
         title = request.form['title']
         wolfBook.title = title
         return render_template('index.html',
                                title='Form',
                                testBookN = wolfBook,
+                               result = AS_ITEMresult,
+                                year=datetime.now().year,
                                )
     if request.method == 'GET':
         print(f"result: {AS_ITEMresult}")

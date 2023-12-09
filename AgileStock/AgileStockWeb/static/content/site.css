@@ -97,6 +97,22 @@ main {
         padding-left: 15px;
         padding-right: 15px;
     }
+
+    & table,
+    & th,
+    & td {
+        border: 1px solid;
+        border-collapse: collapse;
+    }
+
+    & table {
+        margin: 2rem;
+        text-align: center;
+    }
+
+    & th {
+        padding: .5rem;
+    }
 }
 
 /* Set padding to keep content from hitting the edges */
