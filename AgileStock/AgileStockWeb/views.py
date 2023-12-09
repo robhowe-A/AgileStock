@@ -8,10 +8,9 @@ from flask import render_template, request, jsonify
 from AgileStockWeb import app, db
 
 
-from AgileStockWeb.models.book import Book, AS_Item
-from AgileStockWeb import wolfBook, AS_ITEMresult
+from AgileStockWeb.models.book import AS_Item
+from AgileStockWeb import wolfBook
 
-NewTitle = []
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/home', methods=['GET', 'POST'])
@@ -19,21 +18,22 @@ def home():
     """Renders the home page."""
     # TODO: create code to get the book from database
     # TODO: create code to update book in the database
-    print(type(AS_ITEMresult))
+    AS_ITEMresult = db.fetch_fromAS_ITEM()
+    print(f"type: {type(AS_ITEMresult)}, length: {len(AS_ITEMresult)}")
     if request.method == 'POST':
         title = request.form['title']
-        NewTitle.append(title)
         wolfBook.title = title
         return render_template('index.html',
                                title='Form',
                                testBookN = wolfBook,
                                )
-    else:
+    if request.method == 'GET':
+        print(f"result: {AS_ITEMresult}")
         return render_template(
             'index.html',
             title='Inventory',
             testBookN = wolfBook,
-            result = AS_ITEMresult[0],
+            result = AS_ITEMresult,
             year=datetime.now().year,
         )
 
@@ -44,7 +44,6 @@ def changetitle():
     # TODO: create code to update book in the database
     if request.method == 'POST':
         title = request.form['title']
-        NewTitle.append(title)
         return render_template('changetitle.html', title='Form', booktitle=title)
     return render_template('changetitle.html', title='Form')
 
@@ -56,7 +55,7 @@ def contact():
         'contact.html',
         title='Contact',
         year=datetime.now().year,
-        message='Your contact page.'
+        message='Get in touch with our skilled team.'
     )
 
 @app.route('/about')
@@ -66,7 +65,7 @@ def about():
         'about.html',
         title='About',
         year=datetime.now().year,
-        message='Your application description page.'
+        message='Agile Stock inventory.'
     )
 #################################  API  #################################
 

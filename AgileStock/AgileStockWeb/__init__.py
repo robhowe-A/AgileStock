@@ -10,6 +10,7 @@ app = Flask(__name__)
 from AgileStockWeb.database import CreateDatabase
 
 
+
 #app.config is a hash variable needed for a connection string
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
@@ -36,8 +37,6 @@ db.insert_intoAS_ITEM(APIexampleitem_InventoryFromScannerApp.barcode,
     APIexampleitem_InventoryFromScannerApp.productName,
     APIexampleitem_InventoryFromScannerApp.productCategory,
     APIexampleitem_InventoryFromScannerApp.inventorySKU)
-AS_ITEMresult = db.fetch_fromAS_ITEM()
 
-from AgileStockWeb.views import NewTitle
-for title in NewTitle:
-    print(f'{title}, ')
+
+from AgileStockWeb import views

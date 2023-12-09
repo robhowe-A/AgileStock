@@ -1,10 +1,26 @@
 {% extends "layout.html" %}
 
 {% block content %}
-
-<h2>{{ title }}.</h2>
-<h3>{{ message }}</h3>
-
-<p>Use this area to provide additional information.</p>
+<section class="about">
+    <h2>{{ title }}.</h2>
+    <h3>{{ message }}</h3>
+  <div class="card-row">
+    <div class="card">
+      <img src="../static/images/pexels-pixabay-256559.jpg" alt="A library's book hallway.">
+      <h3>1. The Base Station</h3>
+      <p>Use Agile Stock's base station to scan items into your inventory.</p>
+    </div>
+    <div class="card">
+      <img src="../static/images/pexels-lukas-574086.jpg" alt="A laptop resting on a desk.">
+      <h3>2. Upload</h3>
+      <p>After our scanner system has found the item, confirm the details and click upload.</p>
+    </div>
+    <div class="card">
+      <img src="../static/images/pexels-pixabay-4158.jpg" alt="Electronic devices of differnet sizes on a table.">
+      <h3>3. View</h3>
+      <p>The Agile Stock website keeps your inventory records in an easy-to-view inventory panel.</p>
+    </div>
+  </div>
+</section>
 
 {% endblock %}

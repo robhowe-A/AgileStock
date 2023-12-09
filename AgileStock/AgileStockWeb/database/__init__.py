@@ -66,7 +66,7 @@ class CreateDatabase(Database):
                 CREATE TABLE IF NOT EXISTS AS_ITEM (
                 INVENTORYID INT AUTO_INCREMENT PRIMARY KEY,
                 BARCODE INT,
-                PRODUCTNAME VARCHAR(255) NOT NULL,
+                PRODUCTNAME VARCHAR(255) NOT NULL UNIQUE,
                 PRODUCTCATEGORY VARCHAR(255) NOT NULL,
                 INVENTORYSKU VARCHAR(255) NOT NULL
                 )

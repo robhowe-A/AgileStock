@@ -2,19 +2,28 @@
 
 {% block content %}
 
-<h2>{{ title }}.</h2>
-<h3>{{ message }}</h3>
-
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
-
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
-
+<section class="contact">
+    <h2>{{ title }}.</h2>
+    <h3>{{ message }}</h3>
+    <ul>
+      <li>
+        <address>
+            <span class="label">Address:</span>
+            <span class="value">123 Main Street, Anytown, USA</span>
+        </address>
+      </li>
+      <li>
+        <address>
+            <span class="label">Phone:</span>
+            <span class="value"><a href="mailto:Support@example.com">Support@example.com</a></span>
+        </address>
+      </li>
+      <li>
+        <address>
+            <span class="label">Support:</span>
+            <span class="value">(555) 555-5555</span>
+        </address>
+      </li>
+    </ul>
+  </section>
 {% endblock %}
