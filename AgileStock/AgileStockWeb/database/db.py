@@ -1,6 +1,6 @@
-import os
 import pymysql
 from AgileStockWeb.models.out_formatter import logger
+
 
 # MySQL Database
 # Function: create_table creates a table in MySQL database
@@ -8,10 +8,10 @@ class Database:
     def __init__(self, app):
         logger.info(f"Initializing database connection")
         self.mysql = pymysql.connect(
-            host = app.config['MYSQL_HOST'],
-            user = app.config['MYSQL_USER'],
-            password= app.config['MYSQL_PASSWORD'],
-            db = app.config['MYSQL_DB']
+            host=app.config['MYSQL_HOST'],
+            user=app.config['MYSQL_USER'],
+            password=app.config['MYSQL_PASSWORD'],
+            db=app.config['MYSQL_DB']
         )
         logger.info(f"Connection created")
 
@@ -33,6 +33,7 @@ class Database:
         # for row in result:
         #     print(row)
         return data
+
 
 class CreateDatabase(Database):
     def __init__(self, app):
@@ -62,7 +63,7 @@ class CreateDatabase(Database):
     def __create_tableAS_ITEM(self):
         try:
             logger.info(f"Creating 'AS_ITEM' Table =====")
-            SQLcommand = '''
+            SQLcommand: str = '''
                 CREATE TABLE IF NOT EXISTS AS_ITEM (
                 INVENTORYID INT AUTO_INCREMENT PRIMARY KEY,
                 BARCODE INT,
@@ -75,7 +76,7 @@ class CreateDatabase(Database):
             logger.info(f"AS_ITEM Table Created =====")
         except Exception as e:
             logger.error(f"Error while creating table: {e}")
-            
+
     def insert_intoBOOK(self, title, author, publisher, publishedDate, genre, isbn):
         try:
             logger.info(f"Inserting 'BOOK' =====")
@@ -86,7 +87,7 @@ class CreateDatabase(Database):
             logger.info(f"BOOK Inserted ===== Title: {title}")
         except Exception as e:
             logger.error(f"Error with INSERT into table BOOK: {e}")
-    
+
     def fetch_fromAS_ITEM(self):
         try:
             logger.info(f"Selecting 'AS_ITEM' =====")
@@ -98,8 +99,7 @@ class CreateDatabase(Database):
         except Exception as e:
             logger.error(f"Error with SELECT for table AS_ITEM: {e}")
 
-
-    #TODO: Create select statement to get a book from the database
+    # TODO: Create select statement to get a book from the database
     # def select_fromBOOK(self):
     #     try:
     #         logger.info(f"Inserting 'BOOK' =====")
@@ -110,14 +110,12 @@ class CreateDatabase(Database):
     #     except Exception as e:
     #         logger.error(f"Error with INSERT into table BOOK{e}")
 
-    #API_InventoryFromScannerApp = AS_Item(12345, "bookofsomesort", "action", 1, "5432112345ABCD")
-
-    def insert_intoAS_ITEM(self, barcode, productName, productCategory, intenvorySKU):
+    def insert_intoAS_ITEM(self, barcode, productName, productCategory, inventorySKU):
         try:
             logger.info(f"Inserting 'AS_ITEM' =====")
             self._runSQL(f'''
                 INSERT INTO AS_ITEM (BARCODE, PRODUCTNAME, PRODUCTCATEGORY, INVENTORYSKU)
-                VALUES ('{barcode}', '{productName}', '{productCategory}', '{intenvorySKU}');
+                VALUES ('{barcode}', '{productName}', '{productCategory}', '{inventorySKU}');
                 ''')
             logger.info(f"AS_ITEM Inserted ===== ITEM: {productName}")
         except Exception as e:
