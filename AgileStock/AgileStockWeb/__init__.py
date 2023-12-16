@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 
 #from AgileStockWeb.models.out_formatter import logger
-from AgileStockWeb.database import CreateDatabase
+from AgileStockWeb.database.db import CreateDatabase
 
 
 
