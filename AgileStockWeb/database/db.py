@@ -12,8 +12,9 @@ class Database:
             user=app.config['MYSQL_USER'],
             password=app.config['MYSQL_PASSWORD'],
             db=app.config['MYSQL_DB'],
-            require_secure_transport=False  #DEVELOPMENT ONLY
-        )
+            ssl_disabled=True  #DEVELOPMENT ONLY
+            
+        )   
         logger.info(f"Connection created")
 
     def _runSQL(self, SQLcommand):
