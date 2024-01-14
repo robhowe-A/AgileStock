@@ -11,7 +11,8 @@ class Database:
             host=app.config['MYSQL_HOST'],
             user=app.config['MYSQL_USER'],
             password=app.config['MYSQL_PASSWORD'],
-            db=app.config['MYSQL_DB']
+            db=app.config['MYSQL_DB'],
+            require_secure_transport=False  #DEVELOPMENT ONLY
         )
         logger.info(f"Connection created")
 
