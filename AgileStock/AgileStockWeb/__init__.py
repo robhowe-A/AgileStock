@@ -1,6 +1,7 @@
 """
 The flask application package.
 """
+# import os
 from flask import Flask, request, jsonify
 
 app = Flask(__name__)
@@ -12,16 +13,16 @@ from AgileStockWeb.database.db import CreateDatabase
 
 # These (commented) credentials were used for local MySQL database connection string
 # #app.config is a hash variable needed for a connection string
-# app.config['MYSQL_HOST'] = 'localhost'
-# app.config['MYSQL_USER'] = 'root'
-# app.config['MYSQL_PASSWORD'] = '4LocalDB'
-# app.config['MYSQL_DB'] = 'agilestockinv'
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = '4LocalDB'
+app.config['MYSQL_DB'] = 'agilestockinv'
 
 #The below (4) app config variables are used only in azure deployed environment
-app.config['MYSQL_HOST'] = os.environ.get("AZURE_MYSQL_HOST")
-app.config['MYSQL_USER'] = os.environ.get("AZURE_MYSQL_USER")
-app.config['MYSQL_PASSWORD'] = os.environ.get("AZURE_MYSQL_PASSWORD")
-app.config['MYSQL_DB'] = os.environ.get("AZURE_MYSQL_NAME")
+# app.config['MYSQL_HOST'] = os.environ.get("AZURE_MYSQL_HOST")
+# app.config['MYSQL_USER'] = os.environ.get("AZURE_MYSQL_USER")
+# app.config['MYSQL_PASSWORD'] = os.environ.get("AZURE_MYSQL_PASSWORD")
+# app.config['MYSQL_DB'] = os.environ.get("AZURE_MYSQL_NAME")
 
 
 db = CreateDatabase(app)
