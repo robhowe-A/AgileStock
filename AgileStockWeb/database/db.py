@@ -101,16 +101,15 @@ class CreateDatabase(Database):
         except Exception as e:
             logger.error(f"Error with SELECT for table AS_ITEM: {e}")
 
-    # TODO: Create select statement to get a book from the database
-    # def select_fromBOOK(self):
-    #     try:
-    #         logger.info(f"Inserting 'BOOK' =====")
-    #         self._runSQL(f'''
-    #             SELECT * FROM BOOK
-    #         ''')
-    #         logger.info(f"BOOK Inserted ===== Title: {title}")
-    #     except Exception as e:
-    #         logger.error(f"Error with INSERT into table BOOK{e}")
+    def select_fromINVENTORY_ID(self, ID):
+        try:
+            logger.info(f"Retrieving 'BOOK' =====")
+            self._runSQL(f'''
+                SELECT * FROM AS_ITEM WHERE INVENTORYID = {ID}
+            ''')
+            logger.info(f"BOOK Retrieved ===== Title: {title}")
+        except Exception as e:
+            logger.error(f"Error with RETRIEVE into table BOOK{e}")
 
     def insert_intoAS_ITEM(self, barcode, productName, productCategory, inventorySKU):
         try:
