@@ -14,7 +14,7 @@ if not os.environ.get("AZURE_ENVIRONMENT") == "AZUREPROD":
     # #app.config is a hash variable needed for a connection string
     app.config['MYSQL_HOST'] = '127.0.0.1'
     app.config['MYSQL_USER'] = 'root'
-    app.config['MYSQL_PASSWORD'] = '4LocalDB'
+    app.config['MYSQL_PASSWORD'] = 'mylocalpassword'
     app.config['MYSQL_DB'] = 'agilestockinv'
 else:
     #The below (4) app config variables are used only in azure deployed environment

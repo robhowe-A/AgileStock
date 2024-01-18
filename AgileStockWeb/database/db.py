@@ -72,7 +72,7 @@ class CreateDatabase(Database):
                 INVENTORYSKU VARCHAR(255) NOT NULL
                 )
                 '''
-            self._runSQL(SQLcommand)
+            self._runSQLfetchall(SQLcommand)
             logger.info(f"AS_ITEM Table Created =====")
         except Exception as e:
             logger.error(f"Error while creating table: {e}")
@@ -102,12 +102,15 @@ class CreateDatabase(Database):
     def select_fromINVENTORY_ID(self, ID):
         try:
             logger.info(f"Retrieving 'BOOK' =====")
-            self._runSQL(f'''
+            s = self._runSQLfetchall(f'''
                 SELECT * FROM AS_ITEM WHERE INVENTORYID = {ID}
             ''')
-            logger.info(f"BOOK Retrieved ===== Title: {title}")
+            print(s[0]["PRODUCTNAME"])
+            logger.info(f"BOOK Retrieved ===== Title: {s[0]['PRODUCTNAME']}")
+            return s
+            
         except Exception as e:
-            logger.error(f"Error with RETRIEVE into table BOOK{e}")
+            logger.error(f"Error with RETRIEVE into table BOOK {e} ")
 
     def insert_intoAS_ITEM(self, barcode, productName, productCategory, inventorySKU):
         try:

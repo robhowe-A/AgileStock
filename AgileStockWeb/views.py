@@ -90,12 +90,10 @@ def entities():
 
 @app.route('/api/inventoryitem/<int:entity_id>', methods=['GET', 'PUT', 'DELETE'])
 def entity(entity_id):
+    print("test")
     if request.method == "GET":
-        return {
-            'id': entity_id,
-            'message': 'This endpoint should return the entity {} details'.format(entity_id),
-            'method': request.method
-        }
+        return db.select_fromINVENTORY_ID(entity_id)
+        
     if request.method == "PUT":
         return {
             'id': entity_id,
