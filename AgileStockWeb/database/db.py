@@ -38,87 +38,58 @@ class Database:
 class CreateDatabase(Database):
     def __init__(self, app):
         super().__init__(app)
-        self.__create_tableBOOK()
-        self.__create_tableAS_ITEM()
+        self.__create_tableAS_BOOK()
 
-    def __create_tableBOOK(self):
+    def __create_tableAS_BOOK(self):
         try:
-            logger.info(f"Creating 'BOOK' Table =====")
-            SQLcommand = '''
-                CREATE TABLE IF NOT EXISTS BOOK (
-                ID INT AUTO_INCREMENT PRIMARY KEY ,
+            logger.info(f"Creating 'AS_BOOK' Table =====")
+            SQLcommand: str = '''
+                CREATE TABLE IF NOT EXISTS AS_BOOK (
+                BOOKID INT AUTO_INCREMENT PRIMARY KEY,
+                ISBN VARCHAR(255) NOT NULL UNIQUE,
                 TITLE VARCHAR(255) NOT NULL,
                 AUTHOR VARCHAR(255) NOT NULL,
-                PUBLISHER VARCHAR(255),
+                PUBLISHER VARCHAR(255) NOT NULL,
                 PUBLISHED_DATE VARCHAR(255),
-                GENRE VARCHAR(56) NOT NULL,
-                ISBN VARCHAR(13)
-                )
-                '''
-            self._runSQL(SQLcommand)
-            logger.info(f"BOOK Table Created =====")
-        except Exception as e:
-            logger.error(f"Error while creating table: {e}")
-
-    def __create_tableAS_ITEM(self):
-        try:
-            logger.info(f"Creating 'AS_ITEM' Table =====")
-            SQLcommand: str = '''
-                CREATE TABLE IF NOT EXISTS AS_ITEM (
-                INVENTORYID INT AUTO_INCREMENT PRIMARY KEY,
-                BARCODE INT,
-                PRODUCTNAME VARCHAR(255) NOT NULL UNIQUE,
-                PRODUCTCATEGORY VARCHAR(255) NOT NULL,
-                INVENTORYSKU VARCHAR(255) NOT NULL
+                GENRE VARCHAR(255)
                 )
                 '''
             self._runSQLfetchall(SQLcommand)
-            logger.info(f"AS_ITEM Table Created =====")
+            logger.info(f"AS_BOOK Table Created =====")
         except Exception as e:
             logger.error(f"Error while creating table: {e}")
 
-    def insert_intoBOOK(self, title, author, publisher, publishedDate, genre, isbn):
+    def fetch_fromAS_BOOK(self):
         try:
-            logger.info(f"Inserting 'BOOK' =====")
-            self._runSQL(f'''
-                INSERT INTO BOOK (TITLE, AUTHOR, PUBLISHER, PUBLISHED_DATE, GENRE, ISBN)
-                VALUES ('{title}', '{author}', '{publisher}', '{publishedDate}', '{genre}', '{isbn}');
-                ''')
-            logger.info(f"BOOK Inserted ===== Title: {title}")
-        except Exception as e:
-            logger.error(f"Error with INSERT into table BOOK: {e}")
-
-    def fetch_fromAS_ITEM(self):
-        try:
-            logger.info(f"Selecting 'AS_ITEM' =====")
+            logger.info(f"Selecting 'AS_BOOK' =====")
             result = self._runSQLfetchall(f'''
-                SELECT * FROM AS_ITEM
+                SELECT * FROM AS_BOOK
             ''')
-            logger.info(f"AS_ITEM successful fetch!")
+            logger.info(f"AS_BOOK successful fetch!")
             return result
         except Exception as e:
-            logger.error(f"Error with SELECT for table AS_ITEM: {e}")
+            logger.error(f"Error with SELECT for table AS_BOOK: {e}")
 
     def select_fromINVENTORY_ID(self, ID):
         try:
             logger.info(f"Retrieving 'BOOK' =====")
             s = self._runSQLfetchall(f'''
-                SELECT * FROM AS_ITEM WHERE INVENTORYID = {ID}
+                SELECT * FROM AS_BOOK WHERE BOOKID = {ID}
             ''')
-            print(s[0]["PRODUCTNAME"])
-            logger.info(f"BOOK Retrieved ===== Title: {s[0]['PRODUCTNAME']}")
+            print(s[0]["ISBN"])
+            logger.info(f"AS_BOOK Retrieved ===== Title: {s[0]['ISBN']}")
             return s
             
         except Exception as e:
             logger.error(f"Error with RETRIEVE into table BOOK {e} ")
 
-    def insert_intoAS_ITEM(self, barcode, productName, productCategory, inventorySKU):
+    def insert_intoAS_BOOK(self, isbn, title, author, publisher, publishDate, genre):
         try:
-            logger.info(f"Inserting 'AS_ITEM' =====")
+            logger.info(f"Inserting 'AS_BOOK' =====")
             self._runSQL(f'''
-                INSERT INTO AS_ITEM (BARCODE, PRODUCTNAME, PRODUCTCATEGORY, INVENTORYSKU)
-                VALUES ('{barcode}', '{productName}', '{productCategory}', '{inventorySKU}');
+                INSERT INTO AS_BOOK (ISBN, TITLE, AUTHOR, PUBLISHER, PUBLISHED_DATE, GENRE)
+                VALUES ('{isbn}', '{title}', '{author}', '{publisher}', '{publishDate}', '{genre}');
                 ''')
-            logger.info(f"AS_ITEM Inserted ===== ITEM: {productName}")
+            logger.info(f"AS_BOOK Inserted ===== ITEM: {isbn}")
         except Exception as e:
-            logger.error(f"Error with INSERT into table AS_ITEM: {e}")
+            logger.error(f"Error with INSERT into table AS_BOOK: {e}")

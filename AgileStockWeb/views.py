@@ -8,7 +8,7 @@ from flask import render_template, request, jsonify
 from AgileStockWeb import app, db
 
 
-from AgileStockWeb.models.book import AS_Item
+from AgileStockWeb.models.book import AS_BOOK
 from AgileStockWeb import wolfBook
 
 
@@ -18,23 +18,23 @@ def home():
     """Renders the home page."""
     # TODO: create code to get the book from database
     # TODO: create code to update book in the database
-    AS_ITEMresult = db.fetch_fromAS_ITEM()
+    AS_BOOKresult = db.fetch_fromAS_BOOK()
     if request.method == 'POST':
         title = request.form['title']
         wolfBook.title = title
         return render_template('index.html',
                                title='Form',
                                testBookN = wolfBook,
-                               result = AS_ITEMresult,
+                               result = AS_BOOKresult,
                                 year=datetime.now().year,
                                )
     if request.method == 'GET':
-        print(f"result: {AS_ITEMresult}")
+        print(f"result: {AS_BOOKresult}")
         return render_template(
             'index.html',
             title='Inventory',
             testBookN = wolfBook,
-            result = AS_ITEMresult,
+            result = AS_BOOKresult,
             year=datetime.now().year,
         )
 
@@ -69,23 +69,37 @@ def about():
         year=datetime.now().year,
         message='Agile Stock inventory.'
     )
+
+@app.route('/editbook')
+def editBook():
+    """Renders the edit page."""
+    print("TESTHERE")
+    return render_template(
+        'editBook.html',
+        title='Edit',
+        year=datetime.now().year,
+        message='Agile Stock inventory.'
+    )
 #################################  API  #################################
 
 @app.route('/api/inventoryitem', methods=['GET', 'POST'])
 def entities():
     if request.method == "GET":
         return {
-            'AS_Item(s)': db.fetch_fromAS_ITEM() #returns db data from fetch
+            'AS_BOOK(s)': db.fetch_fromAS_BOOK() #returns db data from fetch
         }
     if request.method == "POST":
-        item = AS_Item(
-            request.json["barcode"],
-            request.json["productName"],
-            request.json["productCategory"],
-            request.json["inventorySKU"])
-        db.insert_intoAS_ITEM(item.barcode, item.productName, item.productCategory, item.inventorySKU) #inserts a new item into db
+        item = AS_BOOK(
+            request.json["AUTHOR"],
+            request.json["GENRE"],
+            request.json["ISBN"],
+            request.json["PUBLISHED_DATE"],
+            request.json["PUBLISHER"],
+            request.json["TITLE"])
+        
+        db.insert_intoAS_BOOK(item.author, item.genre, item.isbn, item.publishedDate, item.publisher, item.title) #inserts a new item into db
         return {
-		'AS_Item': request.json
+		'AS_BOOK': request.json
         }
 
 @app.route('/api/inventoryitem/<int:entity_id>', methods=['GET', 'PUT', 'DELETE'])

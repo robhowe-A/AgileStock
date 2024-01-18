@@ -28,19 +28,25 @@
         <div>
             <table>
                 <thead>
-                    <th>INVENTORYID</th>
-                    <th>BARCODE</th>
-                    <th>PRODUCTNAME</th>
-                    <th>PRODUCTCATEGORY</th>
-                    <th>INVENTORYSKU</th>
+                    <th>BOOKID</th>
+                    <th>ISBN</th>
+                    <th>TITLE</th>
+                    <th>AUTHOR</th>
+                    <th>PUBLISHER</th>
+                    <th>PUBLISHED_DATE</th>
+                    <th>GENRE</th>
+
                 </thead>
             {% for item in result %}
             <tr>
-                <th>{{item.INVENTORYID}}</th>
-                <td>{{item.BARCODE}}</td>
-                <td>{{item.PRODUCTNAME}}</td>
-                <td>{{item.PRODUCTCATEGORY}}</td>
-                <td>{{item.INVENTORYSKU}}</td>
+                <th>{{item.BOOKID}}</th>
+                <td>{{item.ISBN}}</td>
+                <td>{{item.TITLE}}</td>
+                <td>{{item.AUTHOR}}</td>
+                <td>{{item.PUBLISHER}}</td>
+                <td>{{item.PUBLISHED_DATE}}</td>
+                <td>{{item.GENRE}}</td>
+
             </tr>
             {%endfor%}
         </table>

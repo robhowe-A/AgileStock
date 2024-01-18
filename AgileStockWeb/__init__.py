@@ -14,7 +14,7 @@ if not os.environ.get("AZURE_ENVIRONMENT") == "AZUREPROD":
     # #app.config is a hash variable needed for a connection string
     app.config['MYSQL_HOST'] = '127.0.0.1'
     app.config['MYSQL_USER'] = 'root'
-    app.config['MYSQL_PASSWORD'] = 'mylocalpassword'
+    app.config['MYSQL_PASSWORD'] = '4LocalDB'
     app.config['MYSQL_DB'] = 'agilestockinv'
 else:
     #The below (4) app config variables are used only in azure deployed environment
@@ -27,9 +27,9 @@ else:
 db = CreateDatabase(app)
 
 
-from AgileStockWeb.models.book import Book, AS_Item
+from AgileStockWeb.models.book import AS_BOOK
 
-wolfBook = Book(
+wolfBook = AS_BOOK(
     "The Wolves of Winter",
     "Tyrell Johnson",
     "Scribner",
@@ -38,11 +38,13 @@ wolfBook = Book(
     "9781501155680"
 )
 
-APIexampleitem_InventoryFromScannerApp = AS_Item(12345, "bookofsomesort", "action", "5432112345ABCD")
-db.insert_intoAS_ITEM(APIexampleitem_InventoryFromScannerApp.barcode,
-    APIexampleitem_InventoryFromScannerApp.productName,
-    APIexampleitem_InventoryFromScannerApp.productCategory,
-    APIexampleitem_InventoryFromScannerApp.inventorySKU)
+APIexampleitem_InventoryFromScannerApp = AS_BOOK("TheActualBook", "Books author", "action books", "5432112345ABCD", "Comedy", "1234567890")
+db.insert_intoAS_BOOK(APIexampleitem_InventoryFromScannerApp.isbn,
+    APIexampleitem_InventoryFromScannerApp.title,
+    APIexampleitem_InventoryFromScannerApp.author,
+    APIexampleitem_InventoryFromScannerApp.publisher,
+    APIexampleitem_InventoryFromScannerApp.publishedDate, 
+    APIexampleitem_InventoryFromScannerApp.genre)
 
 
 from AgileStockWeb import views

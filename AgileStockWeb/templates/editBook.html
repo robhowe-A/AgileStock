@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div>
+    <h1>Inventory</h1>
+    <p class="lead">View a list of inventory items as scanned from AgileStock scanner.
+    </p>
+    <div>
+        
+        <div>
+            <h3>Button Pressed: {{ booktitle }}</h3>
+            <form method="post">
+                <label for="title">Book Title</label>
+                <input id="title" name="title" type="text">
+                <label for="title">Book Title</label>
+                <input id="title" name="title" type="text">
+                <input type="submit" value="POST form method" >
+            </form>
+        </div>
+
+        </div>
+        
+        {% block scripts %}{% endblock %}
+    </div>
+</div>
+
+{% endblock %}
