@@ -38,15 +38,16 @@ def home():
             year=datetime.now().year,
         )
 
-@app.route('/changetitle', methods=['GET', 'POST'])
-def changetitle():
-    """Renders a form page."""
-    # TODO: create code to get the book from database
-    # TODO: create code to update book in the database
-    if request.method == 'POST':
-        title = request.form['title']
-        return render_template('changetitle.html', title='Form', booktitle=title)
-    return render_template('changetitle.html', title='Form')
+# HTTP PUT method mockup -- untested, just sample code
+# @app.route('/changetitle', methods=['GET', 'POST'])
+# def changetitle():
+#     """Renders a form page."""
+#     # TODO: create code to get the book from database
+#     # TODO: create code to update book in the database
+#     if request.method == 'POST':
+#         title = request.form['title']
+#         return render_template('changetitle.html', title='Form', booktitle=title)
+#     return render_template('changetitle.html', title='Form')
 
 
 @app.route('/contact')

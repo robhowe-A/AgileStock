@@ -95,13 +95,12 @@
     <main class="body-content">
         {% block content %}{% endblock %}
         <hr />
-        <footer>
-            <p>&copy; {{ year }} - AgileStock</p>
-        </footer>
+        {% block scripts %}{% endblock %}
     </main>
+    <footer>
+      <p>&copy; {{ year }} - AgileStock</p>
+    </footer>
 
-    {% block scripts %}{% endblock %}
-    
 
 </body>
 </html>

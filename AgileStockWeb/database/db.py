@@ -13,7 +13,6 @@ class Database:
             password=app.config['MYSQL_PASSWORD'],
             db=app.config['MYSQL_DB'],
             ssl_disabled=True  #DEVELOPMENT ONLY
-            
         )   
         logger.info(f"Connection created")
 
@@ -35,7 +34,6 @@ class Database:
         # for row in result:
         #     print(row)
         return data
-
 
 class CreateDatabase(Database):
     def __init__(self, app):
