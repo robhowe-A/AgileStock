@@ -108,16 +108,30 @@ def entity(entity_id):
     if request.method == "GET":
         return db.select_fromINVENTORY_ID(entity_id)
         
-    if request.method == "PUT":
-        return {
-            'id': entity_id,
-            'message': 'This endpoint should update the entity {}'.format(entity_id),
-            'method': request.method,
-		'body': request.json
-        }
-    if request.method == "DELETE":
-        return {
-            'id': entity_id,
-            'message': 'This endpoint should delete the entity {}'.format(entity_id),
-            'method': request.method
-        }
+    # if request.method == "PUT":
+    #     return {
+    #         'id': entity_id,
+    #         'message': 'This endpoint should update the entity {}'.format(entity_id),
+    #         'method': request.method,
+	# 	'body': request.json
+    #     }
+    # if request.method == "DELETE":
+    #     return {
+    #         'id': entity_id,
+    #         'message': 'This endpoint should delete the entity {}'.format(entity_id),
+    #         'method': request.method
+    #     }
+    
+#@app.route('/api/inventoryitem/<int:isbn>', methods=['GET', 'PUT', 'DELETE'])
+    # HTTP(GET("http://azurewebsite.com/api/inventoryitem/###ISBN###"))
+    # HTTP(GET("http://azurewebsite.com/api/inventoryitem/###ISBNS###"))
+    # HTTP(GET("http://azurewebsite.com/api/inventoryitem/isbnsearch")){
+
+    #     #databse needs to run SQL sript
+    #     SELECT * FROM AS_BOOK WHERE ISBN like 'f{string}'
+
+    #     ==> IF YES, return the ITEM
+    #     IF NO or NULL, then run return "Not Found"
+    # }
+#@app.route('/api/delete/inventoryitem', methods=['GET', 'POST'])
+#@app.route('/api/delete/inventoryitem/<int:entity_id>', methods=['GET', 'POST'])
