@@ -28,11 +28,15 @@ class Database:
         print(SQLcommand)
         cursor.execute(f'{SQLcommand!s}')
         result = cursor.fetchall()
-        columns = [column[0] for column in cursor.description]
-        data = [dict(zip(columns, row)) for row in result]
-        cursor.close()
-        # for row in result:
-        #     print(row)
+
+        #return the result or "Not Found"
+        if len(result) <= 0:
+            data = "No results from database fetch."
+        else:
+            #format the result fetch into a manageable format
+            columns = [column[0] for column in cursor.description]
+            data = [dict(zip(columns, row)) for row in result]
+            cursor.close()
         return data
 
 class CreateDatabase(Database):
@@ -76,10 +80,27 @@ class CreateDatabase(Database):
             s = self._runSQLfetchall(f'''
                 SELECT * FROM AS_BOOK WHERE BOOKID = {ID}
             ''')
-            print(s[0]["ISBN"])
-            logger.info(f"AS_BOOK Retrieved ===== Title: {s[0]['ISBN']}")
+            logger.info(f"AS_BOOK Retrieved ===== ISBN: {s[0]['ISBN']}")
             return s
             
+        except Exception as e:
+            logger.error(f"Error with RETRIEVE into table AS_BOOK {e} ")
+
+    def select_fromINVENTORY_ISBN(self, ISBN):
+        try:
+            logger.info(f"Retrieving 'BOOK' with ISBN {ISBN} ====")
+            s = self._runSQLfetchall(f'''
+                SELECT * FROM AS_BOOK WHERE ISBN like {ISBN}
+            ''')
+            if isinstance(s, list):
+                logger.info(f"AS_BOOK Retrieved ===== ISBN: {s[0]['ISBN']}")
+                return s
+            else:
+                appendError = f"A book with the isbn '{ISBN}' does not exist in the database."
+                return [{
+                    "fetchSuccess": "False",
+                    "errorMessage": f"{'{} {}'.format(s, appendError)}"
+                }]
         except Exception as e:
             logger.error(f"Error with RETRIEVE into table BOOK {e} ")
 

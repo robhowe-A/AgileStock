@@ -122,16 +122,12 @@ def entity(entity_id):
     #         'method': request.method
     #     }
     
-#@app.route('/api/inventoryitem/<int:isbn>', methods=['GET', 'PUT', 'DELETE'])
-    # HTTP(GET("http://azurewebsite.com/api/inventoryitem/###ISBN###"))
-    # HTTP(GET("http://azurewebsite.com/api/inventoryitem/###ISBNS###"))
-    # HTTP(GET("http://azurewebsite.com/api/inventoryitem/isbnsearch")){
-
-    #     #databse needs to run SQL sript
-    #     SELECT * FROM AS_BOOK WHERE ISBN like 'f{string}'
-
-    #     ==> IF YES, return the ITEM
-    #     IF NO or NULL, then run return "Not Found"
-    # }
+@app.route('/api/inventoryitem/isbnsearch/<int:book_isbn>', methods=['GET'])
+def book(book_isbn):
+    if request.method == "GET":
+        print("Entering function")
+        book = db.select_fromINVENTORY_ISBN(book_isbn)
+        return book
+    
 #@app.route('/api/delete/inventoryitem', methods=['GET', 'POST'])
 #@app.route('/api/delete/inventoryitem/<int:entity_id>', methods=['GET', 'POST'])
