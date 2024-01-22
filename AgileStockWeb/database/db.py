@@ -1,30 +1,36 @@
-import pymysql
+import pymysql, os
 from AgileStockWeb.models.out_formatter import logger
-
+from AgileStockWeb import app
 
 # MySQL Database
 # Function: create_table creates a table in MySQL database
 class Database:
     def __init__(self, app):
+        self.__host = app.config['MYSQL_HOST']
+        self.__user = app.config['MYSQL_USER']
+        self.__password = app.config['MYSQL_PASSWORD']
+        self.__db = app.config['MYSQL_DB']
+
         logger.info(f"Initializing database connection")
-        self.mysql = pymysql.connect(
-            host=app.config['MYSQL_HOST'],
-            user=app.config['MYSQL_USER'],
-            password=app.config['MYSQL_PASSWORD'],
-            db=app.config['MYSQL_DB'],
+        # Database connection context
+        self.__mysql = pymysql.connect(
+            host=self.__host,
+            user=self.__user,
+            password=self.__password,
+            db=self.__db,
             ssl_disabled=True  #DEVELOPMENT ONLY
-        )   
+        )
         logger.info(f"Connection created")
 
     def _runSQL(self, SQLcommand):
-        cursor = self.mysql.cursor()
+        cursor = self.__mysql.cursor()
         print(SQLcommand)
         cursor.execute(f'{SQLcommand!s}')
-        self.mysql.commit()
+        self.__mysql.commit()
         cursor.close()
 
     def _runSQLfetchall(self, SQLcommand):
-        cursor = self.mysql.cursor()
+        cursor = self.__mysql.cursor()
         print(SQLcommand)
         cursor.execute(f'{SQLcommand!s}')
         result = cursor.fetchall()

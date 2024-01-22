@@ -23,7 +23,6 @@ else:
     app.config['MYSQL_PASSWORD'] = os.environ.get("AZURE_MYSQL_PASSWORD")
     app.config['MYSQL_DB'] = os.environ.get("AZURE_MYSQL_NAME")
 
-
 db = CreateDatabase(app)
 
 
