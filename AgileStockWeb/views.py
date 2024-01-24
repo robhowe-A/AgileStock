@@ -29,7 +29,6 @@ def home():
                                 year=datetime.now().year,
                                )
     if request.method == 'GET':
-        print(f"result: {AS_BOOKresult}")
         return render_template(
             'index.html',
             title='Inventory',
@@ -73,13 +72,15 @@ def about():
 @app.route('/editbook')
 def editBook():
     """Renders the edit page."""
-    print("TESTHERE")
-    return render_template(
-        'editBook.html',
-        title='Edit',
-        year=datetime.now().year,
-        message='Agile Stock inventory.'
-    )
+    if request.method == 'GET':
+        print(f'the url data: {request.args['isbn']}')
+        #request.args gets the passed in isbn value. this value is the isbn of the book who's edit button was clicked.
+        return render_template(
+            'editBook.html',
+            title='Edit',
+            year=datetime.now().year,
+            message='Agile Stock inventory.'
+        )
 #################################  API  #################################
 
 @app.route('/api/inventoryitem', methods=['GET', 'POST'])

@@ -8,18 +8,36 @@
     <div>
         
         <div>
-            <h3>Button Pressed: {{ booktitle }}</h3>
+            <h3>Edit Book: {{ booktitle }}</h3>
             <form method="post">
-                <label for="title">Book Title</label>
-                <input id="title" name="title" type="text">
-                <label for="title">Book Title</label>
-                <input id="title" name="title" type="text">
-                <input type="submit" value="POST form method" >
+                <p>
+                    <label for="title">Title</label>
+                    <input id="title" name="title" type="text">
+                </p>
+                <p>
+                    <label for="author">Author</label>
+                    <input id="author" name="author" type="text">
+                </p>
+                <p>
+                    <label for="publisher">Publisher</label>
+                    <input id="publisher" name="publisher" type="text">
+                </p>
+                <p>
+                    <label for="publishedDate">Published Date</label>
+                    <input id="publishedDate" name="publishedDate" type="text">
+                </p>
+                <p>
+                    <label for="genre">Genre</label>
+                    <input id="genre" name="genre" type="text">
+                </p>
+                <p>
+                    <label for="ISBN">ISBN</label>
+                    <input id="ISBN" name="ISBN" type="text">
+                </p>
+                <input type="submit" value="Submit">
             </form>
         </div>
 
-        </div>
-        
         {% block scripts %}{% endblock %}
     </div>
 </div>
