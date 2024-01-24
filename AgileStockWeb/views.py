@@ -73,7 +73,7 @@ def about():
 def editBook():
     """Renders the edit page."""
     if request.method == 'GET':
-        print(f'the url data: {request.args['isbn']}')
+        print(f'the url data: {request.args["isbn"]}')
         #request.args gets the passed in isbn value. this value is the isbn of the book who's edit button was clicked.
         return render_template(
             'editBook.html',
