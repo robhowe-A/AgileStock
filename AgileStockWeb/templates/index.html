@@ -2,59 +2,42 @@
 
 {% block content %}
 
-<div>
+<section>
     <h1>Inventory</h1>
     <p class="lead">View a list of inventory items as scanned from AgileStock scanner.
     </p>
-    <div>
-        <div>
-            <h3>{{testBookN.title}}</h3>
-            <ul>
-                <li>Author: {{testBookN.author}}</li>
-                <li>Genre: {{testBookN.genre}}</li>
-                <li>ISBN: {{testBookN.isbn}}</li>
-                <li>Published Date: {{testBookN.publishedDate}}</li>
-                <li>Publisher: {{testBookN.publisher}}</li>
-            </ul>
-        </div>
-        <div>
-            <h3>Button Pressed: {{ booktitle }}</h3>
-            <form method="post">
-                <label for="title">Book Title</label>
-                <input id="title" name="title" type="text">
-                <input type="submit" value="POST form method" >
-            </form>
-        </div>
-        <div>
-            <table>
-                <thead>
-                    <th>BOOKID</th>
-                    <th>Edit</th>
-                    <th>ISBN</th>
-                    <th>TITLE</th>
-                    <th>AUTHOR</th>
-                    <th>PUBLISHER</th>
-                    <th>PUBLISHED_DATE</th>
-                    <th>GENRE</th>
-
-                </thead>
-            {% for item in result %}
-            <tr>
-                <td>{{item.BOOKID}}</td>
-                <td><form action="editbook"><button value="{{item.ISBN}}" name="isbn" type="submit">Edit</button></form></td>
-                <td>{{item.ISBN}}</td>
-                <td>{{item.TITLE}}</td>
-                <td>{{item.AUTHOR}}</td>
-                <td>{{item.PUBLISHER}}</td>
-                <td>{{item.PUBLISHED_DATE}}</td>
-                <td>{{item.GENRE}}</td>
-            </tr>
-            {%endfor%}
-        </table>
-        </div>
-        
-        {% block scripts %}{% endblock %}
+    <div class="flex-content">
+        {% for item in result %}
+            <div class="inner">
+                <table >
+                    <tr>
+                        <td><b>ID:</b></td>
+                        <td>{{item.BOOKID}}</td>
+                    </tr>
+                    <tr>
+                        <td><b>ISBN:</b></td>
+                        <td>{{item.ISBN}}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Title:</b></td>
+                        <td>{{item.TITLE}}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Author:</b></td>
+                        <td>{{item.AUTHOR}}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Genre:</b></td>
+                        <td>{{item.GENRE}}</td>
+                    </tr>
+                </table>
+                <form action="editbook"><button value="{{item.ISBN}}" name="isbn" type="submit">Edit</button></form>
+            </div>
+        {%endfor%}
+    <!-- </table> -->
     </div>
-</div>
+    
+    {% block scripts %}{% endblock %}
+</section>
 
 {% endblock %}

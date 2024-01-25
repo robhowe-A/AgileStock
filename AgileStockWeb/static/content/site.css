@@ -93,28 +93,66 @@ body {
 }
 
 main {
-    &.body-content {
+&.body-content {
         padding-left: 15px;
         padding-right: 15px;
     }
 
-    & table,
-    & th,
-    & td {
-        border: 1px solid;
-        border-collapse: collapse;
-    }
-
-    & table {
-        margin: 2rem;
-        text-align: center;
-    }
-
-    & th {
-        padding: .5rem;
-    }
+& table,
+& th,
+& td {
+text-align: left;
+    border-collapse: collapse;
+padding: 1rem;
 }
 
+& table {
+margin: 0 auto;
+    text-align: center;
+}
+
+& ul {
+    list-style: none;
+    margin-block: .5em;
+}
+
+& div {
+    margin-block: 2em;
+}
+
+& .flex-content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+& .inner {
+    margin-inline: 1em;
+    min-width: 275px;
+    max-width: 75%;
+    border: 2px solid green;
+    padding: 1em;
+    border-radius: .5em;
+    background-color: lightblue;
+    box-shadow: -5px 5px 8px black;
+
+    & button:focus {
+        background-color: transparent;
+        /* Ensure button's background stays transparent */
+    }
+
+    &:focus-within {
+        /* Apply background color when button is focused */
+        background-color: lightseagreen;
+    }
+}
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+}
 /* Set padding to keep content from hitting the edges */
 
 
