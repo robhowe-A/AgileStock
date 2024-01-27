@@ -90,15 +90,20 @@ def entities():
             'AS_BOOK(s)': db.fetch_fromAS_BOOK() #returns db data from fetch
         }
     if request.method == "POST":
+        print(f"request is: {request.json}")
         item = AS_BOOK(
+            request.json["TITLE"],
             request.json["AUTHOR"],
-            request.json["GENRE"],
-            request.json["ISBN"],
-            request.json["PUBLISHED_DATE"],
             request.json["PUBLISHER"],
-            request.json["TITLE"])
-        
-        db.insert_intoAS_BOOK(item.author, item.genre, item.isbn, item.publishedDate, item.publisher, item.title) #inserts a new item into db
+            request.json["PUBLISHED_DATE"],
+            request.json["GENRE"],
+            request.json["ISBN"]
+            )
+        print(f"book title to add: {item.title}")
+        print(f"book genre to add: {item.genre}")
+        print(f"book isbn to add: {item.isbn}")
+        print(f"book title to add: {item.publishedDate}")
+        db.insert_intoAS_BOOK(item.isbn, item.title, item.author, item.publisher,  item.publishedDate, item.genre,   ) #inserts a new item into db
         return {
 		'AS_BOOK': request.json
         }
