@@ -8,31 +8,27 @@
     <div>
         
         <div>
-            <h3>Edit Book: {{ booktitle }}</h3>
+            <h3>Edit Book: {{ book_to_edit.title }}</h3>
             <form method="post">
                 <p>
                     <label for="title">Title</label>
-                    <input id="title" name="title" type="text">
+                    <input id="title" name="title" type="text" value="{{book_to_edit.title}}">
                 </p>
                 <p>
                     <label for="author">Author</label>
-                    <input id="author" name="author" type="text">
+                    <input id="author" name="author" type="text" value="{{book_to_edit.author}}">
                 </p>
                 <p>
                     <label for="publisher">Publisher</label>
-                    <input id="publisher" name="publisher" type="text">
+                    <input id="publisher" name="publisher" type="text" value="{{book_to_edit.publisher}}">
                 </p>
                 <p>
                     <label for="publishedDate">Published Date</label>
-                    <input id="publishedDate" name="publishedDate" type="text">
+                    <input id="publishedDate" name="publishedDate" type="text" value="{{book_to_edit.publishedDate}}">
                 </p>
                 <p>
                     <label for="genre">Genre</label>
-                    <input id="genre" name="genre" type="text">
-                </p>
-                <p>
-                    <label for="ISBN">ISBN</label>
-                    <input id="ISBN" name="ISBN" type="text">
+                    <input id="genre" name="genre" type="text" value="{{book_to_edit.genre}}">
                 </p>
                 <input type="submit" value="Submit">
             </form>
