@@ -104,19 +104,18 @@ def editBook():
             message="Agile Stock inventory.",
             book_to_edit=item,
         )
-    
-    # Editbook page has a form to submit. We need logic to pass the book id or isbn, then 
+
+    # Editbook page has a form to submit. We need logic to pass the book id or isbn, then
     # complete the change.
     if request.method == "POST":
-        #print(request.args["isbn"])
-        #entity_id = db.select_fromINVENTORY_ISBN(request.form['ISBN'])
-            # db.edit_title_AS_BOOK(request.json[0]["TITLE"], entity_id)
-            # db.edit_author_AS_BOOK(request.json[0]["AUTHOR"], entity_id)
-            # db.edit_published_date_AS_BOOK(request.json[0]["PUBLISHED_DATE"], entity_id)
-            # db.edit_publisher_AS_BOOK(request.json[0]["PUBLISHER"], entity_id)
-            # db.edit_genre_AS_BOOK(request.json[0]["GENRE"], entity_id)
-        return { "Success": f"{request.args["isbn"]}"}
-
+        # print(request.args["isbn"])
+        # entity_id = db.select_fromINVENTORY_ISBN(request.form['ISBN'])
+        # db.edit_title_AS_BOOK(request.json[0]["TITLE"], entity_id)
+        # db.edit_author_AS_BOOK(request.json[0]["AUTHOR"], entity_id)
+        # db.edit_published_date_AS_BOOK(request.json[0]["PUBLISHED_DATE"], entity_id)
+        # db.edit_publisher_AS_BOOK(request.json[0]["PUBLISHER"], entity_id)
+        # db.edit_genre_AS_BOOK(request.json[0]["GENRE"], entity_id)
+        return {"Success": f"{request.args['isbn']}"}
 
 
 #################################  API  #################################
@@ -166,11 +165,10 @@ def entity(entity_id):
         db.edit_publisher_AS_BOOK(request.json[0]["PUBLISHER"], entity_id)
         db.edit_genre_AS_BOOK(request.json[0]["GENRE"], entity_id)
 
-
         return {
-            'id': entity_id,
-            'message': f'Updated database entity if this request response == 200.',
-            'method': request.method,
+            "id": entity_id,
+            "message": f"Updated database entity if this request response == 200.",
+            "method": request.method,
         }
 
 
