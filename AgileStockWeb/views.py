@@ -108,7 +108,7 @@ def editBook():
     # Editbook page has a form to submit. We need logic to pass the book id or isbn, then 
     # complete the change.
     if request.method == "POST":
-        print(request.args["isbn"])
+        #print(request.args["isbn"])
         #entity_id = db.select_fromINVENTORY_ISBN(request.form['ISBN'])
             # db.edit_title_AS_BOOK(request.json[0]["TITLE"], entity_id)
             # db.edit_author_AS_BOOK(request.json[0]["AUTHOR"], entity_id)
