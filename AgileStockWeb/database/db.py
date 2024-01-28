@@ -103,7 +103,7 @@ class CreateDatabase(Database):
             logger.info(f"Retrieving 'BOOK' with ISBN {ISBN} ====")
             s = self._runSQLfetchall(
                 f"""
-                SELECT * FROM AS_BOOK WHERE ISBN like {ISBN}
+                SELECT * FROM AS_BOOK WHERE ISBN like '{ISBN}'
             """
             )
             if isinstance(s, list):

@@ -126,19 +126,14 @@ def entities():
     if request.method == "GET":
         return {"AS_BOOK(s)": db.fetch_fromAS_BOOK()}  # returns db data from fetch
     if request.method == "POST":
-        print(f"request is: {request.json}")
         item = AS_BOOK(
-            request.json["TITLE"],
-            request.json["AUTHOR"],
-            request.json["PUBLISHER"],
-            request.json["PUBLISHED_DATE"],
-            request.json["GENRE"],
-            request.json["ISBN"],
+            request.json[0]["TITLE"],
+            request.json[0]["AUTHOR"],
+            request.json[0]["PUBLISHER"],
+            request.json[0]["PUBLISHED_DATE"],
+            request.json[0]["GENRE"],
+            request.json[0]["ISBN"],
         )
-        print(f"book title to add: {item.title}")
-        print(f"book genre to add: {item.genre}")
-        print(f"book isbn to add: {item.isbn}")
-        print(f"book title to add: {item.publishedDate}")
         db.insert_intoAS_BOOK(
             item.isbn,
             item.title,
