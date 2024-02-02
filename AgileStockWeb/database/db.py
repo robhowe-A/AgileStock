@@ -139,7 +139,7 @@ class CreateDatabase(Database):
         try:
             logger.info(f"Changing title to {title}")
             self._runSQL(
-                f"""UPDATE agilestockinv.AS_BOOK SET TITLE = "{title}" WHERE BOOKID = {entity_id}"""
+                f"""UPDATE AS_BOOK SET TITLE = "{title}" WHERE BOOKID = {entity_id}"""
             )
         except Exception as e:
             logger.error(f"Error with SET into table AS_BOOK: {e}")
