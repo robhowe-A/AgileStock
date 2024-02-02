@@ -108,14 +108,28 @@ def editBook():
     # Editbook page has a form to submit. We need logic to pass the book id or isbn, then
     # complete the change.
     if request.method == "POST":
-        # print(request.args["isbn"])
-        # entity_id = db.select_fromINVENTORY_ISBN(request.form['ISBN'])
-        # db.edit_title_AS_BOOK(request.json[0]["TITLE"], entity_id)
-        # db.edit_author_AS_BOOK(request.json[0]["AUTHOR"], entity_id)
-        # db.edit_published_date_AS_BOOK(request.json[0]["PUBLISHED_DATE"], entity_id)
-        # db.edit_publisher_AS_BOOK(request.json[0]["PUBLISHER"], entity_id)
-        # db.edit_genre_AS_BOOK(request.json[0]["GENRE"], entity_id)
-        return {"Success": f"{request.args['isbn']}"}
+        try:
+            entity_id = db.select_fromINVENTORY_ISBN(request.args['isbn'])
+
+            #Since editform has a post, each attribute is edited from data ingress
+            db.edit_title_AS_BOOK(request.form["title"], entity_id[0]['BOOKID'])
+            db.edit_author_AS_BOOK(request.form["author"], entity_id[0]['BOOKID'])
+            db.edit_published_date_AS_BOOK(request.form["publishedDate"], entity_id[0]['BOOKID'])
+            db.edit_publisher_AS_BOOK(request.form["publisher"], entity_id[0]['BOOKID'])
+            db.edit_genre_AS_BOOK(request.form["genre"], entity_id[0]['BOOKID'])
+
+
+            #updates have succeeded, fetch the list of inventory and redirect user to inv page
+            AS_BOOKresult = db.fetch_fromAS_BOOK()
+
+            return render_template(
+            "index.html",
+            title="Inventory",
+            result=AS_BOOKresult,
+            year=datetime.now().year,
+        )
+        except:
+            return {"Server error": "The book's update could not process successfully."}
 
 
 #################################  API  #################################
