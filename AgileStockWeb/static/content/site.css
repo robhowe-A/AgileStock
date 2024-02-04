@@ -102,13 +102,22 @@ main {
 & th,
 & td {
 text-align: left;
-    border-collapse: collapse;
+border-collapse: collapse;
 padding: 1rem;
 }
 
 & table {
-margin: 0 auto;
+margin: 0;
     text-align: center;
+    & .col2 {
+            width: 100%;
+        }
+    }
+    
+    & table#edit_Table {
+        & td:last-child input:not(type="submit") {
+            width: 500px;
+        }
 }
 
 & ul {
@@ -129,8 +138,7 @@ margin: 0 auto;
 
 & .inner {
     margin-inline: 1em;
-    min-width: 275px;
-    max-width: 75%;
+    width: 400px;
     border: 2px solid green;
     padding: 1em;
     border-radius: .5em;

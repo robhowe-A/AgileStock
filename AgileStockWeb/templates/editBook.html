@@ -10,27 +10,31 @@
         <div>
             <h3>Edit Book: {{ book_to_edit.title }}</h3>
             <form method="post">
-                <p>
-                    <label for="title">Title</label>
-                    <input id="title" name="title" type="text" value="{{book_to_edit.title}}">
-                </p>
-                <p>
-                    <label for="author">Author</label>
-                    <input id="author" name="author" type="text" value="{{book_to_edit.author}}">
-                </p>
-                <p>
-                    <label for="publisher">Publisher</label>
-                    <input id="publisher" name="publisher" type="text" value="{{book_to_edit.publisher}}">
-                </p>
-                <p>
-                    <label for="publishedDate">Published Date</label>
-                    <input id="publishedDate" name="publishedDate" type="text" value="{{book_to_edit.publishedDate}}">
-                </p>
-                <p>
-                    <label for="genre">Genre</label>
-                    <input id="genre" name="genre" type="text" value="{{book_to_edit.genre}}">
-                </p>
-                <input type="submit" value="Submit">
+                <table id="edit_Table">
+                    <tr>
+                        <td><label for="title">Title</label></td>
+                        <td><input id="title" name="title" type="text" value="{{book_to_edit.title}}"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="author">Author</label></td>
+                        <td><input id="author" name="author" type="text" value="{{book_to_edit.author}}"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="publisher">Publisher</label></td>
+                        <td><input id="publisher" name="publisher" type="text" value="{{book_to_edit.publisher}}"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="publishedDate">Published Date</label></td>
+                        <td><input id="publishedDate" name="publishedDate" type="text" value="{{book_to_edit.publishedDate}}"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="genre">Genre</label></td>
+                        <td><input id="genre" name="genre" type="text" value="{{book_to_edit.genre}}"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" value="Submit"></td>
+                    </tr>
+                </table>
             </form>
         </div>
 

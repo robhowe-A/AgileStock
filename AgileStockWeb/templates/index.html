@@ -11,24 +11,24 @@
             <div class="inner">
                 <table >
                     <tr>
-                        <td><b>ID:</b></td>
-                        <td>{{item.BOOKID}}</td>
-                    </tr>
-                    <tr>
-                        <td><b>ISBN:</b></td>
-                        <td>{{item.ISBN}}</td>
-                    </tr>
-                    <tr>
                         <td><b>Title:</b></td>
-                        <td>{{item.TITLE}}</td>
+                        <td class="col2">{{item.TITLE}}</td>
                     </tr>
                     <tr>
                         <td><b>Author:</b></td>
-                        <td>{{item.AUTHOR}}</td>
+                        <td class="col2">{{item.AUTHOR}}</td>
+                    </tr>
+                    <tr>
+                        <td><b>ISBN:</b></td>
+                        <td class="col2">{{item.ISBN}}</td>
                     </tr>
                     <tr>
                         <td><b>Genre:</b></td>
-                        <td>{{item.GENRE}}</td>
+                        <td class="col2">{{item.GENRE}}</td>
+                    </tr>
+                    <tr>
+                        <td><b>ID:</b></td>
+                        <td class="col2">{{item.BOOKID}}</td>
                     </tr>
                 </table>
                 <form action="editbook"><button value="{{item.ISBN}}" name="isbn" type="submit">Edit</button></form>
