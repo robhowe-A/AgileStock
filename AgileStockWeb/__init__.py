@@ -16,7 +16,7 @@ if not os.environ.get("AZURE_ENVIRONMENT") == "AZUREPROD":
     # #app.config is a hash variable needed for a connection string
     app.config["MYSQL_HOST"] = "127.0.0.1"
     app.config["MYSQL_USER"] = "root"
-    app.config["MYSQL_PASSWORD"] = "4LocalDB"
+    app.config["MYSQL_PASSWORD"] = "mylocalpassword"
     app.config["MYSQL_DB"] = "agilestockinv"
 else:
     # The below (4) app config variables are used only in azure deployed environment
@@ -28,6 +28,8 @@ else:
 db = CreateDatabase(app)
 
 from AgileStockWeb.models.book import AS_BOOK
+
+# db.delete_AS_BOOK("pymysql changes", 1)
 
 APIexampleitem_InventoryFromScannerApp = AS_BOOK(
     "TheActualBook",
@@ -45,6 +47,5 @@ db.insert_intoAS_BOOK(
     APIexampleitem_InventoryFromScannerApp.publishedDate,
     APIexampleitem_InventoryFromScannerApp.genre,
 )
-
 
 from AgileStockWeb import views

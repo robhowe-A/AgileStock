@@ -3,7 +3,7 @@ Routes and views for the flask application.
 """
 
 from datetime import datetime
-from flask import render_template, request, jsonify
+from flask import render_template, request, redirect
 
 # from AgileStockWeb import app, db
 from AgileStockWeb import app, db
@@ -201,3 +201,11 @@ def book(book_isbn):
 
 # @app.route('/api/delete/inventoryitem', methods=['GET', 'POST'])
 # @app.route('/api/delete/inventoryitem/<int:entity_id>', methods=['GET', 'POST'])
+
+@app.route("/API/Delete", methods=['POST'])
+def delete_Book():
+    print ("Deleting book . . .")
+    print (request.form["delete_book"])
+    #entity_id = db.select_fromINVENTORY_ISBN(request.args['isbn'])
+    db.delete_AS_BOOK(request.form["delete_book"])
+    return redirect(request.referrer)

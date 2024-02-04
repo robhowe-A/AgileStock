@@ -148,8 +148,7 @@ class CreateDatabase(Database):
         try:
             logger.info(f"Changing author to {author}")
             self._runSQL(
-                f"""UPDATE agilestockinv.AS_BOOK SET AUTHOR = "{author}" 
-                    WHERE BOOKID = {entity_id}"""
+                f"""UPDATE AS_BOOK SET AUTHOR = "{author}" WHERE BOOKID = {entity_id}"""
             )
         except Exception as e:
             logger.error(f"Error with SET into table AS_BOOK: {e}")
@@ -158,8 +157,7 @@ class CreateDatabase(Database):
         try:
             logger.info(f"Changing publisher to {publisher}")
             self._runSQL(
-                f"""UPDATE agilestockinv.AS_BOOK SET PUBLISHER = "{publisher}" 
-                    WHERE BOOKID = {entity_id}"""
+                f"""UPDATE AS_BOOK SET PUBLISHER = "{publisher}" WHERE BOOKID = {entity_id}"""
             )
         except Exception as e:
             logger.error(f"Error with SET into table AS_BOOK: {e}")
@@ -168,8 +166,7 @@ class CreateDatabase(Database):
         try:
             logger.info(f"Changing published date to {publishedDate}")
             self._runSQL(
-                f"""UPDATE agilestockinv.AS_BOOK SET PUBLISHED_DATE = "{publishedDate}" 
-                    WHERE BOOKID = {entity_id}"""
+                f"""UPDATE AS_BOOK SET PUBLISHED_DATE = "{publishedDate}" WHERE BOOKID = {entity_id}"""
             )
         except Exception as e:
             logger.error(f"Error with SET into table AS_BOOK: {e}")
@@ -178,8 +175,16 @@ class CreateDatabase(Database):
         try:
             logger.info(f"Changing genre to {genre}")
             self._runSQL(
-                f"""UPDATE agilestockinv.AS_BOOK SET GENRE = "{genre}" 
-                    WHERE BOOKID = {entity_id}"""
+                f"""UPDATE AS_BOOK SET GENRE = "{genre}" WHERE BOOKID = {entity_id}"""
             )
         except Exception as e:
             logger.error(f"Error with SET into table AS_BOOK: {e}")
+
+    def delete_AS_BOOK(self, entity_id):
+        try:
+            logger.info(f"Deleting book...")
+            self._runSQL(
+                f"""DELETE FROM AS_BOOK WHERE BOOKID = {entity_id}"""
+            )
+        except Exception as e:
+            logger.error(f"Error with DELETE from table AS_BOOK: {e}")
