@@ -161,7 +161,6 @@ def entities():
 
 @app.route("/api/inventoryitem/<int:entity_id>", methods=["GET", "PUT", "DELETE"])
 def entity(entity_id):
-    print("test")
     if request.method == "GET":
         return db.select_fromINVENTORY_ID(entity_id)
 
@@ -179,6 +178,26 @@ def entity(entity_id):
             "message": f"Updated database entity if this request response == 200.",
             "method": request.method,
         }
+    
+    if request.method == "DELETE":
+        #match the URL id to the JSON id, requested for delete
+        if entity_id == int(request.json[0]["delete_book_id"]):
+            
+            #call database function to delete the item
+            db.delete_AS_BOOK(request.json[0]["delete_book_id"])
+            return {
+                "id": entity_id,
+                "message": f"Deleted database entity if this request response == 200.",
+                "method": request.method,
+            }
+        else:
+            #unsuccessful database operation: return json message to caller
+            return {
+                "id": entity_id,
+                "message": f"Delete method called. Unable to delete the item due to ID mismatch.",
+                "entity_id": entity_id,
+                "BOOKID": request.json[0]["delete_book_id"]
+            }
 
 
 # 	'body': request.json
