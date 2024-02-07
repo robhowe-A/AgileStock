@@ -6,8 +6,17 @@
 
 :root {
     --clr-White: #ffffff;
+    --clr-primary-darkBlue: #092D80;
+    --clr-primary-lightBlue: #536Ca6;
+    --clr-lightblue: #add8e6;
+    --clr-lightseagreen: #20b2aa;
+    --clr-lightgreen: #90ee90;
+    --clr-lightgoldenrodyellow: #fafad2;
+    --clr-orangered: #ff4500;
+    --clr-orange: #ffa500;
 }
 
+/* Styles for body content */
 body {
     display: flex;
     flex-direction: row;
@@ -39,11 +48,11 @@ body {
     & nav {
         display: inline-block;
         height: 100vh;
-        background-color: #536Ca6;
+        background-color: var(--clr-primary-lightBlue);
         color: var(--clr-White);
 
         & div:nth-child(1) {
-            background-color: #092D80;
+            background-color: var(--clr-primary-darkBlue);
             padding: 1em;
         }
 
@@ -70,7 +79,7 @@ body {
                 color: var(--clr-White);
 
                 &:hover {
-                    background-color: lightgreen;
+                    background-color: var(--clr-lightgreen);
                 }
 
 
@@ -92,69 +101,112 @@ body {
     }
 }
 
+/* Styles for main content */
 main {
-&.body-content {
-        padding-left: 15px;
-        padding-right: 15px;
+    &.body-content {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+    & table,
+    & th,
+    & td {
+        text-align: left;
+        border-collapse: collapse;
     }
 
-& table,
-& th,
-& td {
-text-align: left;
-border-collapse: collapse;
-padding: 1rem;
-}
+    & table {
+        margin: 0;
+        text-align: center;
 
-& table {
-margin: 0;
-    text-align: center;
-    & .col2 {
+        & .col2 {
             width: 100%;
         }
     }
-    
+        
     & table#edit_Table {
-        & td:last-child input:not(type="submit") {
-            width: 500px;
+        background-color: var(--clr-lightgoldenrodyellow);
+        width: calc(100% + 2em);
+
+        & td {
+            text-align: right;
         }
-}
+        
+        & input:not(input[type="submit"]) {
+            width: max(100%, 500px);
+        }
 
-& ul {
-    list-style: none;
-    margin-block: .5em;
-}
-
-& div {
-    margin-block: 2em;
-}
-
-& .flex-content {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-}
-
-& .inner {
-    margin-inline: 1em;
-    width: 400px;
-    border: 2px solid green;
-    padding: 1em;
-    border-radius: .5em;
-    background-color: lightblue;
-    box-shadow: -5px 5px 8px black;
-
-    & button:focus {
-        background-color: transparent;
-        /* Ensure button's background stays transparent */
+        & input[type="submit"]{
+            margin-block: 1em;
+        }
+    }
+        
+    & ul {
+        list-style: none;
+        margin-block: .5em;
     }
 
-    &:focus-within {
-        /* Apply background color when button is focused */
-        background-color: lightseagreen;
+    & div {
+        margin-block: 1em;
     }
-}
+
+    & .flex-content {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+
+    & .inner {
+        margin-inline: 1em;
+        width: 400px;
+        border: 2px solid green;
+        padding: 1em;
+        border-radius: .5em;
+        background-color: var(--clr-lightblue);
+        box-shadow: -5px 5px 8px black;
+        overflow: auto;
+        scrollbar-color: var(--clr-primary-lightBlue) var(--clr-lightblue);
+        scrollbar-width: thin;
+
+        & .bookButtons {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            margin: 1em 0 0 0;
+
+            & button {
+                margin-left: 2em;
+            }
+        }
+        
+        &:focus-within {
+            /* Apply background color when button is focused */
+            background-color: var(--clr-lightgoldenrodyellow);
+        }
+    }
+
+    & :is(button, input) {
+        &:is(:hover, :focus){
+            background-color: var(--clr-lightgreen);
+            cursor: pointer;
+        }
+    }
+    & form[action="editbook"] button {
+        cursor: alias;
+    }
+    & button[name="delete_book"] {
+        background-color: var(--clr-orange);
+        scale: 1.2;
+
+        &:is(:hover, :focus){
+            background-color: var(--clr-orangered);
+        }
+    }
+
+    & .deleteConfirm {
+        background-color: var(--clr-lightgoldenrodyellow);
+    }
 }
 
 footer {

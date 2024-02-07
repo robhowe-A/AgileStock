@@ -8,7 +8,7 @@
     <div>
         
         <div>
-            <h3>Edit Book: {{ book_to_edit.title }}</h3>
+            <h3>Edit Book: {{ book_to_edit.title }} - {{ book_to_edit.isbn }}</h3>
             <form method="post">
                 <table id="edit_Table">
                     <tr>
@@ -32,6 +32,7 @@
                         <td><input id="genre" name="genre" type="text" value="{{book_to_edit.genre}}"></td>
                     </tr>
                     <tr>
+                        <td></td>
                         <td><input type="submit" value="Submit"></td>
                     </tr>
                 </table>
