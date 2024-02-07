@@ -36,7 +36,7 @@
                     <button value="{{item.ISBN}}" name="{{item.BOOKID}}" type="submit" class="DelButton">Delete</button>
                 </div>
                 <dialog class="deleteConfirm">
-                    <p>Are you sure you want to delete this book from inventory?<br><br><b>Title:</b> {{item.TITLE}}<br><b>Id:</b> {{item.ISBN}}</p>
+                    <p>Are you sure you want to delete this book from inventory?<br><br><b>Title:</b> {{item.TITLE}}<br><b>Isbn:</b> {{item.ISBN}}</p>
                     <div class="bookButtons">
                         <button autofocus>Cancel</button>
                         <form action="/API/Delete" method="POST">
