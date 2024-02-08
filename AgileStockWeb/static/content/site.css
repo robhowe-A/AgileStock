@@ -18,86 +18,102 @@
 
 /* Styles for body content */
 body {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    flex-shrink: 0;
     margin: 0;
-    font-family: 'Orbitron';
+    
+        & .mainContainer {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        flex-shrink: 0;
+        margin: 0;
+        font-family: 'Orbitron';
 
-    & main {
-        font-family: 'SourceSansPro';
-    }
-
-    & a {
-        &:active {
-            text-decoration-color: var(--clr-White);
+        & main {
+            font-family: 'SourceSansPro';
         }
 
-        &:has(#logo) {
-            text-decoration: none;
-        }
-    }
+        & a {
+            &:active {
+                text-decoration-color: var(--clr-White);
+            }
 
-    & #logo {
-        font-size: 32px;
-        font-weight: bold;
-        color: var(--clr-White);
-    }
-
-    & nav {
-        display: inline-block;
-        height: 100vh;
-        background-color: var(--clr-primary-lightBlue);
-        color: var(--clr-White);
-
-        & div:nth-child(1) {
-            background-color: var(--clr-primary-darkBlue);
-            padding: 1em;
-        }
-
-        & hr {
-            margin: 0;
-        }
-
-        & ul {
-            list-style: none;
-            padding: 0;
-            width: 100%;
-        }
-
-        & li {
-            margin-block: 3rem;
-            text-align: center;
-            display: block;
-
-            & a {
-                padding: .5rem 1rem;
+            &:has(#logo) {
                 text-decoration: none;
-                border-radius: 1rem;
-                padding-right: 35px;
-                color: var(--clr-White);
+            }
+        }
 
-                &:hover {
-                    background-color: var(--clr-lightgreen);
+        & #logo {
+            font-size: 32px;
+            font-weight: bold;
+            color: var(--clr-White);
+        }
+
+        & nav {
+            display: inline-block;
+            height: 100vh;
+            background-color: var(--clr-primary-lightBlue);
+            color: var(--clr-White);
+
+            & div:nth-child(1) {
+                background-color: var(--clr-primary-darkBlue);
+                padding: 1em;
+            }
+
+            & hr {
+                margin: 0;
+            }
+
+            & ul {
+                list-style: none;
+                padding: 0;
+                width: 100%;
+            }
+
+            & li {
+                margin-block: 3rem;
+                text-align: center;
+                display: block;
+
+                & a {
+                    padding: .5rem 1rem;
+                    text-decoration: none;
+                    border-radius: 1rem;
+                    padding-right: 35px;
+                    color: var(--clr-White);
+
+                    &:hover {
+                        background-color: var(--clr-lightgreen);
+                    }
                 }
 
+                & svg {
+                    margin-right: 15px;
+                }
 
+                &:hover {
+                    text-decoration: underline;
+                }
             }
-
-            & svg {
-                margin-right: 15px;
+            /* styles for mobile */
+            @media screen and (750px > width){
+                height: initial;
             }
-
-            &:hover {
-                text-decoration: underline;
-            }
+            
         }
-    }
 
-    & img {
-        margin: 0;
-        max-width: 100%;
+        & img {
+            margin: 0;
+            max-width: 100%;
+        }
+
+        .bookIcon {
+            width: 75px; 
+        }
+        
+        /* styles for mobile */
+        @media screen and (750px > width){
+            flex-direction: column;
+        }
     }
 }
 
@@ -168,16 +184,23 @@ main {
         overflow: auto;
         scrollbar-color: var(--clr-primary-lightBlue) var(--clr-lightblue);
         scrollbar-width: thin;
+        display: grid;
+        grid-template-columns: 100px 1fr;
 
         & .bookButtons {
             display: flex;
             flex-wrap: wrap;
             flex-direction: row;
             margin: 1em 0 0 0;
+            grid-column: 1 / 3;
 
             & button {
                 margin-left: 2em;
             }
+        }
+
+        & td {
+            padding-right:1em;
         }
         
         &:focus-within {
@@ -210,11 +233,16 @@ main {
 }
 
 footer {
-    position: absolute;
+    flex-direction: row;
+    position: sticky;
     bottom: 0;
-}
-/* Set padding to keep content from hitting the edges */
+    background-color: var(--clr-primary-darkBlue);
+    width: 100%;
 
+    & p {
+        margin-bottom: 0;
+    }
+}
 
 /* Set width on the form input elements since they're 100% wide by default */
 input,
