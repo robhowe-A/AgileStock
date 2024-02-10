@@ -250,6 +250,13 @@ footer {
     }
 }
 
+
+/* 
+Author: Robert Howell - Feb. 2024
+Attribution: The below 'switch' elements are derived of Matt Smith's codepen: https://codepen.io/AllThingsSmitty/pen/MmxxOz?editors=1100
+Codepen: https://codepen.io/AllThingsSmitty/pen/MmxxOz?editors=1100
+Date: 2-10-2024 
+*/
 .switch {
     position:relative;
     cursor: pointer;
