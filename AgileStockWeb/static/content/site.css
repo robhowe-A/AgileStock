@@ -50,7 +50,7 @@ body {
 
         & nav {
             display: inline-block;
-            height: 100vh;
+            height: calc(max(100vh, 100%));
             background-color: var(--clr-primary-lightBlue);
             color: var(--clr-White);
 
@@ -199,6 +199,10 @@ main {
             & button {
                 margin-left: 2em;
             }
+
+            & :is(.DelButton.hidden, .EditButton.hidden) {
+                display: none;
+            }
         }
 
         & td {
@@ -243,6 +247,57 @@ footer {
 
     & p {
         margin-bottom: 0;
+    }
+}
+
+.switch {
+    position:relative;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    width: 55%;
+    margin-block: .5rem;
+    margin-inline: auto;
+
+    & input {
+        display: none;
+
+        &:checked + .slider{
+            background-color: #66bb6a;
+
+        }
+
+        &:checked + .slider:before{
+            transform: translateX(15px);
+        }
+    }
+
+    & .slider {
+        width: 35px;
+        height: 20px;
+        background-color: var(--clr-lightblue);
+        margin-inline: 10px;
+        position: relative;
+        transition: .4s;
+        display: inline-block;
+        border-radius: 20px;
+
+        &:before {
+            position:absolute;
+            top: 4px;
+            left: 4px;
+            height: 12px;
+            width: 12px;
+            content: "";
+            background-color: var(--clr-White);
+            border-radius: 50%;
+            transition: .4s;
+        }
+    }
+
+    /* styles for mobile */
+    @media screen and (750px > width){
+        width: calc(max(30%, 130px));
     }
 }
 
