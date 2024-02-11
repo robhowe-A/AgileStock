@@ -260,7 +260,7 @@ Date: 2-10-2024
 .switch {
     position:relative;
     cursor: pointer;
-    display: flex;
+    display: none;
     justify-content: space-between;
     width: 55%;
     margin-block: .5rem;
