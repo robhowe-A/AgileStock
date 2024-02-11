@@ -3,12 +3,12 @@
 {% block content %}
 
 <section>
-    <form action="/"><button value="items" name="view" type="submit"><svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg></button></form>
+    <form action="/"><button value="items" name="view" type="submit" class="viewToggle"><svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg></button></form>
     <h1>Inventory</h1>
     <p class="lead">View a list of inventory items as scanned from AgileStock scanner.
     </p>
     <div class="flex-content">
-        <table >
+        <table id="indexTable">
             <tr>
                 <th>Title</th>
                 <th>Author</th>
@@ -17,20 +17,20 @@
                 <th>ID</th>
                 <th>Publisher</th>
                 <th>Published Date</th>
-                <th id="editColumn">Edit</th>
-                <th id="deleteColumn">Delete</th>
+                <th id="editColumn" class="hidden">Edit</th>
+                <th id="deleteColumn" class="hidden">Delete</th>
             </tr>
         {% for item in result %}
-            <tr>
-                <td class="col2">{{item.TITLE}}</td>
-                <td class="col2">{{item.AUTHOR}}</td>
-                <td class="col2">{{item.ISBN}}</td>
-                <td class="col2">{{item.GENRE}}</td>
-                <td class="col2">{{item.BOOKID}}</td>
-                <td class="col2">{{item.PUBLISHER}}</td>
-                <td class="col2">{{item.PUBLISHED_DATE}}</td>
-                <td class="col2"><form action="editbook"><button value="{{item.ISBN}}" name="isbn" type="submit" class="EditButton hidden">Edit</button></form></td>
-                <td class="col2"><button value="{{item.ISBN}}" name="{{item.BOOKID}}" type="submit" class="DelButton hidden">Delete</button></td>
+            <tr tabindex="0">
+                <td>{{item.TITLE}}</td>
+                <td>{{item.AUTHOR}}</td>
+                <td>{{item.ISBN}}</td>
+                <td>{{item.GENRE}}</td>
+                <td>{{item.BOOKID}}</td>
+                <td>{{item.PUBLISHER}}</td>
+                <td>{{item.PUBLISHED_DATE}}</td>
+                <td class="editColumnCell hidden"><form action="editbook"><button value="{{item.ISBN}}" name="isbn" type="submit" class="EditButton hidden">Edit</button></form></td>
+                <td class="deleteColumnCell hidden"><button value="{{item.ISBN}}" name="{{item.BOOKID}}" type="submit" class="DelButton hidden">Delete</button></td>
             </tr>
             <dialog class="deleteConfirm">
                 <p>Are you sure you want to delete this book from inventory?<br><br><b>Title:</b> {{item.TITLE}}<br><b>Isbn:</b> {{item.ISBN}}</p>

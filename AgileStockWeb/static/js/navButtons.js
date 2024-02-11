@@ -15,16 +15,23 @@ const navButtons = {
     //Edit & Delete switches from navigation
     const switchElems = document.querySelectorAll(".switch");
 
-    //Edit &  Delete table columns
+    //Edit &  Delete table columns + elements
     const editColumn = document.getElementById("editColumn");
+    const editColumnRows = document.querySelectorAll(".editColumnCell");
     const deleteColumn = document.getElementById("deleteColumn");
+    const deleteColumnRows = document.querySelectorAll(".deleteColumnCell");
 
     const editToggleInputCheck = () => {
       if (editToggleInpElem.checked == true) {
         //Reveal edit column for the table view
         if (editColumn != null) {
           editColumn.style.display = "table-cell";
+          editColumnRows.forEach(row => {
+            //Reveal each edit cell
+            row.classList.remove("hidden");
+          });
         }
+
         //Reveal all inventory edit buttons
         invItemEditButtons.forEach(button => {
           button.classList.remove("hidden");
@@ -33,6 +40,10 @@ const navButtons = {
         //Hide edit column for the table view
         if (editColumn != null) {
           editColumn.style.removeProperty("display");
+          editColumnRows.forEach(row => {
+            //Hide each edit cell
+            row.classList.add("hidden");
+          });
         }
         //Hide all inventory edit buttons
         invItemEditButtons.forEach(button => {
@@ -46,6 +57,10 @@ const navButtons = {
         //Reveal delete column for the table view
         if (deleteColumn != null) {
           deleteColumn.style.display = "table-cell";
+          deleteColumnRows.forEach(row => {
+            //Reveal each edit cell
+            row.classList.remove("hidden");
+          });
         }
         //Reveal all inventory delete buttons
         invItemDelButtons.forEach(button => {
@@ -55,6 +70,10 @@ const navButtons = {
         //Hide edit column for the table view
         if (deleteColumn != null) {
           deleteColumn.style.removeProperty("display");
+          deleteColumnRows.forEach(row => {
+            //Hide each edit cell
+            row.classList.add("hidden");
+          });
         }
         //Hide all inventory delete buttons
         invItemDelButtons.forEach(button => {
