@@ -7,13 +7,13 @@ const app = {
     inventoryButtons.init();
 
     if (window.location.pathname == "/home" || window.location.pathname == "/") {
-      //Show Edit/Delete buttons
+      //Reveal the Edit/Delete buttons in the navigation panel; they're hidden by default.
       const switches = document.querySelectorAll(".switch");
       switches.forEach(button => {
         button.style.display = "flex";
       });
 
-      //add nav init
+      //Initialize the button toggle action in "navButtons" script
       navButtons.init();
     }
   },

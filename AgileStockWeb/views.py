@@ -23,8 +23,7 @@ from AgileStockWeb.models.book import AS_BOOK
 @app.route("/home", methods=["GET", "POST"])
 def home():
     """Renders the home page."""
-    # TODO: create code to get the book from database
-    # TODO: create code to update book in the database
+    
     AS_BOOKresult = db.fetch_fromAS_BOOK()
     if request.method == "POST":
         title = request.form["title"]
@@ -35,12 +34,22 @@ def home():
             year=datetime.now().year,
         )
     if request.method == "GET":
-        return render_template(
-            "index.html",
-            title="Inventory",
-            result=AS_BOOKresult,
-            year=datetime.now().year,
-        )
+        # Show the page based on the view's selection. Default is grid
+        if request.args.get("view") == None or request.args.get("view") == "items":
+            return render_template(
+                "index.html",
+                title="Inventory",
+                result=AS_BOOKresult,
+                year=datetime.now().year,
+            )
+        # Show the table view
+        if request.args.get("view") == "table":
+            return render_template(
+                "indextable.html",
+                title="Inventory",
+                result=AS_BOOKresult,
+                year=datetime.now().year,
+                )
 
 
 # HTTP PUT method mockup -- untested, just sample code

@@ -200,9 +200,7 @@ main {
                 margin-left: 2em;
             }
 
-            & :is(.DelButton.hidden, .EditButton.hidden) {
-                display: none;
-            }
+            
         }
 
         & td {
@@ -214,16 +212,22 @@ main {
             background-color: var(--clr-lightgoldenrodyellow);
         }
     }
-
+    
     & :is(button, input) {
         &:is(:hover, :focus){
             background-color: var(--clr-lightgreen);
             cursor: pointer;
         }
     }
+
+    & :is(.DelButton.hidden, .EditButton.hidden, #editColumn, #deleteColumn) {
+        display: none;
+    }
+
     & form[action="editbook"] button {
         cursor: alias;
     }
+
     & button[name="delete_book"] {
         background-color: var(--clr-orange);
         scale: 1.2;

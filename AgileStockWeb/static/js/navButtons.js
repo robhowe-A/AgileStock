@@ -7,20 +7,34 @@ const navButtons = {
     const deleteToggleInpElem = document.querySelector('.switch[for="deleteToggle"] input');
 
     //Inventory items' delete button
-    const invItemDelButtons = document.querySelectorAll(".bookButtons .DelButton");
+    const invItemDelButtons = document.querySelectorAll("button.DelButton");
 
     //Inventory items' edit button
-    const invItemEditButtons = document.querySelectorAll(".bookButtons .EditButton");
+    const invItemEditButtons = document.querySelectorAll("button.EditButton");
 
     //Edit & Delete switches from navigation
     const switchElems = document.querySelectorAll(".switch");
 
+    //Edit &  Delete table columns
+    const editColumn = document.getElementById("editColumn");
+    const deleteColumn = document.getElementById("deleteColumn");
+
     const editToggleInputCheck = () => {
       if (editToggleInpElem.checked == true) {
+        //Reveal edit column for the table view
+        if (editColumn != null) {
+          editColumn.style.display = "table-cell";
+        }
+        //Reveal all inventory edit buttons
         invItemEditButtons.forEach(button => {
           button.classList.remove("hidden");
         });
       } else {
+        //Hide edit column for the table view
+        if (editColumn != null) {
+          editColumn.style.removeProperty("display");
+        }
+        //Hide all inventory edit buttons
         invItemEditButtons.forEach(button => {
           button.classList.add("hidden");
         });
@@ -29,11 +43,19 @@ const navButtons = {
 
     const deleteToggleInputCheck = () => {
       if (deleteToggleInpElem.checked == true) {
+        //Reveal delete column for the table view
+        if (deleteColumn != null) {
+          deleteColumn.style.display = "table-cell";
+        }
         //Reveal all inventory delete buttons
         invItemDelButtons.forEach(button => {
           button.classList.remove("hidden");
         });
       } else {
+        //Hide edit column for the table view
+        if (deleteColumn != null) {
+          deleteColumn.style.removeProperty("display");
+        }
         //Hide all inventory delete buttons
         invItemDelButtons.forEach(button => {
           button.classList.add("hidden");
