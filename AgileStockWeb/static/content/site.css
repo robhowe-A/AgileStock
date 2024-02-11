@@ -141,21 +141,43 @@ main {
             width: 100%;
         }
     }
-        
-    & table#edit_Table {
+
+    & #edit_Table_Container{
+        width: fit-content;
         background-color: var(--clr-lightgoldenrodyellow);
-        width: calc(100% + 2em);
+        border-radius: .5em;
+        box-shadow: -5px 5px 8px black;
 
-        & td {
-            text-align: right;
+        & h3 {
+            text-align: center;
+            padding-top: 1em;
         }
         
-        & input:not(input[type="submit"]) {
-            width: max(100%, 500px);
+        & table#edit_Table {
+            margin: 0 3em 3em 3em;
+
+            & td:not(:first-of-type) {
+                text-align: right;
+                padding: 1em 2em;
+            }
+            
+            & input:not(input[type="submit"]) {
+                width: min(100%, 500px);
+            }
+
+            & input[type="submit"]{
+                margin-block: 1em;
+            }
         }
 
-        & input[type="submit"]{
-            margin-block: 1em;
+        @media screen and (750px > width){
+            & table#edit_Table {
+                margin: 0 3em 1rem 1rem;
+                
+                & td:not(:first-of-type){
+                    padding: 1em 0;
+                }
+            }
         }
     }
         
