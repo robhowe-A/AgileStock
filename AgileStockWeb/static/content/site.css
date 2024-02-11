@@ -362,6 +362,38 @@ Date: 2-10-2024
     }
 }
 
+#hero {
+    width: calc(100% + 2rem);
+    height: 250px;
+    max-width: initial;
+    transform: 
+        translateX(-1rem)
+        translateY(-1.5rem);
+
+    & img {
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        margin: 0 auto;
+        display: inline-block;
+        height: 100%;
+        width: 500%;
+        object-fit: cover;
+    }
+}
+
+#aboutSection {
+    & img {
+        width: 100%;
+        display: block;
+        margin: 0 auto;
+        border-radius: 25px;
+    }
+
+    & .card {
+        width: 75%;
+        margin: 4em auto 0 auto;
+    }
+}
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
