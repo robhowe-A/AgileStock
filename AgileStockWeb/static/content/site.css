@@ -396,7 +396,7 @@ Date: 2-10-2024
 
 #hero {
     width: calc(100% + 2rem);
-    height: 250px;
+    height: 400px;
     max-width: initial;
     transform: 
         translateX(-1rem)
@@ -414,6 +414,14 @@ Date: 2-10-2024
 }
 
 #aboutSection {
+    & #logo {
+        width: 400px;
+        margin-top: -350px;
+        margin-bottom: 175px;
+        z-index: 1;
+        position: relative;
+        
+    }
     & img {
         width: 100%;
         display: block;
