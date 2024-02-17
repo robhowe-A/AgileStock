@@ -1,3 +1,31 @@
+##########################################################################
+## Company: AgileStock
+## Engineer(s): Robert Howell, Branson Addington, David Poach
+## 
+## Create Date:    12/3/2023
+## Project Name:    AgileStock
+## Target Devices:    Web
+## Tool versions:    MySQL >= 5.7
+## Description:   Database class provides methods to create and change database tables/items in MySQL.
+## Dependencies:
+##   -module(s):
+##      pymysql
+##      AgileStockWeb.models.out_formatter
+##      AgileStockWeb
+##
+##   -packages(s):
+##      PyMySQL==1.1.0
+##
+## Revision: 1.3 - Confirm code runs with unit tests
+## Revision: 1.2 - Added book editing SQL run functions
+## Revision: 1.1 - Added select_fromINVENTORY_ISBN SQL fetch function
+## Revision: 1.0 - File Created
+## Additional Comments: CreateDatabase inherits Database and provides functions for the parent
+##  database functions to run SQL statements.
+##  Requirements: https://pymysql.readthedocs.io/en/latest/user/installation.html
+##
+##########################################################################
+
 import pymysql, os
 from AgileStockWeb.models.out_formatter import logger
 from AgileStockWeb import app

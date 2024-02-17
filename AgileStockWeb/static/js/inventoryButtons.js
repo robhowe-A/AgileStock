@@ -1,3 +1,22 @@
+/* ##########################################################################
+## Company: AgileStock
+## Engineer(s): Robert Howell, Branson Addington
+## 
+## Create Date:    2/10/2023
+## Project Name:    AgileStock
+## Target Devices:    Web
+## Tool versions:    JavaScript
+## Description:   This module holds frontend JS needed for inventory buttons' function
+## Dependencies:
+##   -module(s):
+##
+##   -packages(s):
+##
+## Revision: 1.1 - Edit/delete buttons code update to handle null elements
+## Revision: 1.0 - File Created
+## Additional Comments: 
+##
+########################################################################## */
 const inventoryButtons = {
   init: () => {
     //Inventory item buttons function for edit & delete

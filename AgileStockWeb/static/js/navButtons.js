@@ -1,3 +1,23 @@
+/* ##########################################################################
+## Company: AgileStock
+## Engineer(s): Robert Howell, Branson Addington
+## 
+## Create Date:    2/10/2023
+## Project Name:    AgileStock
+## Target Devices:    Web
+## Tool versions:    JavaScript
+## Description:   This module holds nav buttons code
+## Dependencies:
+##   -module(s):
+##
+##   -packages(s):
+##
+## Revision: 1.1 - Updated for table column add/remove based on input selection
+## Revision: 1.0 - File Created
+## Additional Comments: When the edit or delete nav button is toggled, the
+##  matching edit or delete buttons are removed from the markup dynamically.
+##
+########################################################################## */
 const navButtons = {
   init: () => {
     //Nav buttons toggle elements

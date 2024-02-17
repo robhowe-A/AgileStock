@@ -1,3 +1,29 @@
+/* ##########################################################################
+## Company: AgileStock
+## Engineer(s): Robert Howell, Branson Addington, David Poach
+## 
+## Create Date:    1/24/2023
+## Project Name:    AgileStock
+## Target Devices:    Web
+## Tool versions:    CSS, Nested CSS
+## Description:   This is a static file asset for the website's pages.
+## Dependencies:
+##   -module(s):
+##
+##   -packages(s):
+##
+## Revision: 1.7 - Edit book form styles updated
+## Revision: 1.6 - About page styles + img assets added
+## Revision: 1.5 - Styles added for indextable.html
+## Revision: 1.4 - Matt Smith's codepen attribution, updates to nav edit and delete buttons
+## Revision: 1.3 - Form button styles added
+## Revision: 1.2 - Styles for mobile added
+## Revision: 1.1 - Site color variables added
+## Revision: 1.0 - File Created
+## Additional Comments: Nested CSS is a new standard. It is available on all major browsers.
+##  Reference: https://caniuse.com/?search=nested%20css
+##
+########################################################################## */
 @import url('https://fonts.googleapis.com/css2?family=Commissioner:wght@400;700;800&family=Orbitron:wght@400;600;700&display=swap');
 
 * {

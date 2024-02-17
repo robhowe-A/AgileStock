@@ -52,3 +52,7 @@ app.config['MYSQL_DB'] = '<database name>'
   > MySQL Server (Full) - community (mysql-installer-community-8.0.35.0.msi)  
   > MySQL Workbench (requires C++ Redistributable installation)  
   > Download link: https://dev.mysql.com/downloads/installer/ (mysql-installer-community-8.0.35.0.msi)
+
+### Azure environment  
+- This site was developed on Microsoft Azure  
+- Dev:  https://agilestockweb.azurewebsites.net/

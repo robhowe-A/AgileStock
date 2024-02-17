@@ -1,3 +1,22 @@
+##########################################################################
+## Company: AgileStock
+## Engineer(s): Robert Howell
+## 
+## Create Date:    12/3/2023
+## Project Name:    AgileStock
+## Target Devices:    Web
+## Tool versions:    Python 3.11
+## Description:   Logger class
+## Dependencies:
+##   -module(s):
+##      logging
+##
+##   -packages(s):
+##
+## Revision: 1.0 - File Created
+## Additional Comments: Logging class used for console output
+##
+##########################################################################
 import logging
 
 

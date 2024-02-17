@@ -1,23 +1,45 @@
-"""
-Routes and views for the flask application.
-"""
+##########################################################################
+## Company: AgileStock
+## Engineer(s): Robert Howell, Branson Addington, David Poach, Noah St Mark, Alfredo Lezama
+## 
+## Create Date:    12/3/2023
+## Project Name:    AgileStock
+## Target Devices:    Web
+## Tool versions:    Python 3.11
+## Description:   API initialization. app.route() decorators allow URL 
+##  listeners for passing data from python to HTML.
+## Dependencies:
+##   -module(s):
+##      datetime
+##      flask
+##      AgileStockWeb
+##      AgileStockWeb.models.book
+##
+##   -packages(s):
+##      blinker==1.7.0
+##      click==8.1.7
+##      colorama==0.4.6
+##      Flask==3.0.0
+##      itsdangerous==2.1.2
+##      Jinja2==3.1.2
+##      MarkupSafe==2.1.3
+##      PyMySQL==1.1.0
+##      Werkzeug==3.0.1
+##
+## Revision: 1.5 - updated entity function return
+## Revision: 1.4 - updated edithBook() return
+## Revision: 1.3 - added editBook() route
+## Revision: 1.2 - get inventory by id<int:isbn> route added
+## Revision: 1.1 - editbook route added
+## Revision: 1.0 - File Created
+## Additional Comments: Routes and views for the flask application.
+##
+##########################################################################
 
 from datetime import datetime
 from flask import render_template, request, redirect
-
-# from AgileStockWeb import app, db
 from AgileStockWeb import app, db
-
-
 from AgileStockWeb.models.book import AS_BOOK
-
-# def update_book_database_all(entity_id):
-#     db.edit_title_AS_BOOK(request.json[0]["TITLE"], entity_id)
-#     db.edit_author_AS_BOOK(request.json[0]["AUTHOR"], entity_id)
-#     db.edit_published_date_AS_BOOK(request.json[0]["PUBLISHED_DATE"], entity_id)
-#     db.edit_publisher_AS_BOOK(request.json[0]["PUBLISHER"], entity_id)
-#     db.edit_genre_AS_BOOK(request.json[0]["GENRE"], entity_id)
-
 
 @app.route("/", methods=["GET", "POST"])
 @app.route("/home", methods=["GET", "POST"])
@@ -142,8 +164,6 @@ def editBook():
 
 
 #################################  API  #################################
-
-
 @app.route("/api/inventoryitem", methods=["GET", "POST"])
 def entities():
     if request.method == "GET":
@@ -208,17 +228,6 @@ def entity(entity_id):
                 "BOOKID": request.json[0]["delete_book_id"]
             }
 
-
-# 	'body': request.json
-#     }
-# if request.method == "DELETE":
-#     return {
-#         'id': entity_id,
-#         'message': 'This endpoint should delete the entity {}'.format(entity_id),
-#         'method': request.method
-#     }
-
-
 @app.route("/api/inventoryitem/isbnsearch/<int:book_isbn>", methods=["GET"])
 def book(book_isbn):
     if request.method == "GET":
@@ -226,14 +235,9 @@ def book(book_isbn):
         book = db.select_fromINVENTORY_ISBN(book_isbn)
         return book
 
-
-# @app.route('/api/delete/inventoryitem', methods=['GET', 'POST'])
-# @app.route('/api/delete/inventoryitem/<int:entity_id>', methods=['GET', 'POST'])
-
 @app.route("/API/Delete", methods=['POST'])
 def delete_Book():
     print ("Deleting book . . .")
     print (request.form["delete_book"])
-    #entity_id = db.select_fromINVENTORY_ISBN(request.args['isbn'])
     db.delete_AS_BOOK(request.form["delete_book"])
     return redirect(request.referrer)
