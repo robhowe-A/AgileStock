@@ -140,6 +140,7 @@ def editBook():
     # Editbook page has a form to submit. We need logic to pass the book id or isbn, then
     # complete the change.
     if request.method == "POST":
+
         try:
             entity_id = db.select_fromINVENTORY_ISBN(request.args["isbn"])
 
@@ -154,13 +155,9 @@ def editBook():
 
             # updates have succeeded, fetch the list of inventory and redirect user to inv page
             AS_BOOKresult = db.fetch_fromAS_BOOK()
-
-            return render_template(
-                "index.html",
-                title="Inventory",
-                result=AS_BOOKresult,
-                year=datetime.now().year,
-            )
+            print("Function is here.")
+            print(request.referrer)
+            return redirect("/")
         except:
             return {"Server error": "The book's update could not process successfully."}
 
