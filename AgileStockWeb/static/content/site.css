@@ -1,3 +1,29 @@
+/* ##########################################################################
+## Company: AgileStock
+## Engineer(s): Robert Howell, Branson Addington, David Poach
+## 
+## Create Date:    1/24/2023
+## Project Name:    AgileStock
+## Target Devices:    Web
+## Tool versions:    CSS, Nested CSS
+## Description:   This is a static file asset for the website's pages.
+## Dependencies:
+##   -module(s):
+##
+##   -packages(s):
+##
+## Revision: 1.7 - Edit book form styles updated
+## Revision: 1.6 - About page styles + img assets added
+## Revision: 1.5 - Styles added for indextable.html
+## Revision: 1.4 - Matt Smith's codepen attribution, updates to nav edit and delete buttons
+## Revision: 1.3 - Form button styles added
+## Revision: 1.2 - Styles for mobile added
+## Revision: 1.1 - Site color variables added
+## Revision: 1.0 - File Created
+## Additional Comments: Nested CSS is a new standard. It is available on all major browsers.
+##  Reference: https://caniuse.com/?search=nested%20css
+##
+########################################################################## */
 @import url('https://fonts.googleapis.com/css2?family=Commissioner:wght@400;700;800&family=Orbitron:wght@400;600;700&display=swap');
 
 * {
@@ -6,118 +32,434 @@
 
 :root {
     --clr-White: #ffffff;
+    --clr-primary-darkBlue: #092D80;
+    --clr-primary-lightBlue: #536Ca6;
+    --clr-lightblue: #add8e6;
+    --clr-lightseagreen: #20b2aa;
+    --clr-lightgreen: #90ee90;
+    --clr-lightgoldenrodyellow: #fafad2;
+    --clr-orangered: #ff4500;
+    --clr-orange: #ffa500;
+    --clr-black: #000000;
 }
 
+/* Styles for body content */
 body {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    flex-shrink: 0;
     margin: 0;
-    font-family: 'Orbitron';
+    
+        & .mainContainer {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        flex-shrink: 0;
+        margin: 0;
+        font-family: 'Orbitron';
 
-    & main {
-        font-family: 'SourceSansPro';
-    }
-
-    & a {
-        &:active {
-            text-decoration-color: var(--clr-White);
+        & main {
+            font-family: 'SourceSansPro';
         }
 
-        &:has(#logo) {
-            text-decoration: none;
-        }
-    }
+        & a {
+            &:active {
+                text-decoration-color: var(--clr-White);
+            }
 
-    & #logo {
-        font-size: 32px;
-        font-weight: bold;
-        color: var(--clr-White);
-    }
-
-    & nav {
-        display: inline-block;
-        height: 100vh;
-        background-color: #536Ca6;
-        color: var(--clr-White);
-
-        & div:nth-child(1) {
-            background-color: #092D80;
-            padding: 1em;
-        }
-
-        & hr {
-            margin: 0;
-        }
-
-        & ul {
-            list-style: none;
-            padding: 0;
-            width: 100%;
-        }
-
-        & li {
-            margin-block: 3rem;
-            text-align: center;
-            display: block;
-
-            & a {
-                padding: .5rem 1rem;
+            &:has(#logo) {
                 text-decoration: none;
-                border-radius: 1rem;
-                padding-right: 35px;
-                color: var(--clr-White);
+            }
+        }
 
-                &:hover {
-                    background-color: lightgreen;
+        & #logo {
+            font-size: 32px;
+            font-weight: bold;
+            color: var(--clr-White);
+        }
+
+        & nav {
+            display: inline-block;
+            height: calc(max(100vh, 100%));
+            background-color: var(--clr-primary-lightBlue);
+            color: var(--clr-White);
+
+            & div:nth-child(1) {
+                background-color: var(--clr-primary-darkBlue);
+                padding: 1em;
+            }
+
+            & hr {
+                margin: 0;
+            }
+
+            & ul {
+                list-style: none;
+                padding: 0;
+                width: 100%;
+            }
+
+            & li {
+                margin-block: 3rem;
+                text-align: center;
+                display: block;
+
+                & a {
+                    padding: .5rem 1rem;
+                    text-decoration: none;
+                    border-radius: 1rem;
+                    padding-right: 35px;
+                    color: var(--clr-White);
+
+                    &:hover {
+                        background-color: var(--clr-lightgreen);
+                    }
                 }
 
+                & svg {
+                    margin-right: 15px;
+                }
 
+                &:hover {
+                    text-decoration: underline;
+                }
             }
-
-            & svg {
-                margin-right: 15px;
+            /* styles for mobile */
+            @media screen and (750px > width){
+                height: initial;
             }
-
-            &:hover {
-                text-decoration: underline;
-            }
+            
         }
-    }
 
-    & img {
-        margin: 0;
-        max-width: 100%;
+        & img {
+            margin: 0;
+            max-width: 100%;
+        }
+
+        .bookIcon {
+            width: 75px; 
+        }
+        
+        /* styles for mobile */
+        @media screen and (750px > width){
+            flex-direction: column;
+        }
     }
 }
 
+/* Styles for main content */
 main {
+    width: 100%;
+
     &.body-content {
-        padding-left: 15px;
-        padding-right: 15px;
-    }
+            padding-left: 15px;
+            padding-right: 15px;
+        }
 
     & table,
     & th,
     & td {
-        border: 1px solid;
+        text-align: left;
         border-collapse: collapse;
     }
 
     & table {
-        margin: 2rem;
+        margin: 0;
         text-align: center;
+
+        & .col2 {
+            width: 100%;
+        }
     }
 
-    & th {
-        padding: .5rem;
+    & #edit_Table_Container{
+        width: fit-content;
+        background-color: var(--clr-lightgoldenrodyellow);
+        border-radius: .5em;
+        box-shadow: -5px 5px 8px var(--clr-black);
+
+        & h3 {
+            text-align: center;
+            padding-top: 1em;
+        }
+        
+        & table#edit_Table {
+            margin: 0 3em 3em 3em;
+
+            & td:not(:first-of-type) {
+                text-align: right;
+                padding: 1em 2em;
+            }
+            
+            & input:not(input[type="submit"]) {
+                width: min(100%, 500px);
+            }
+
+            & input[type="submit"]{
+                margin-block: 1em;
+            }
+        }
+
+        @media screen and (750px > width){
+            & table#edit_Table {
+                margin: 0 3em 1rem 1rem;
+                
+                & td:not(:first-of-type){
+                    padding: 1em 0;
+                }
+            }
+        }
+    }
+        
+    & ul {
+        list-style: none;
+        margin-block: .5em;
+    }
+
+    & div {
+        margin-block: 1em;
+    }
+
+    & .flex-content {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+
+    & .inner {
+        margin-inline: 1em;
+        width: 400px;
+        border: 1px solid var(--clr-primary-darkBlue);
+        padding: 1em;
+        border-radius: .5em;
+        background-color: var(--clr-lightblue);
+        box-shadow: -5px 5px 8px var(--clr-black);
+        overflow: auto;
+        scrollbar-color: var(--clr-primary-lightBlue) var(--clr-lightblue);
+        scrollbar-width: thin;
+        display: grid;
+        grid-template-columns: 100px 1fr;
+        align-items: center;
+
+        & td {
+            padding-right:1em;
+        }
+        
+        &:focus-within {
+            /* Apply background color when button is focused */
+            background-color: var(--clr-lightgoldenrodyellow);
+        }
+    }
+
+    & .bookButtons {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        margin: 1em 0 0 0;
+        grid-column: 1 / 3;
+        align-items: end;
+
+        & button {
+            margin-left: 2em;
+        }
+    }
+    
+    & :is(button, input) {
+        &:is(:hover, :focus){
+            background-color: var(--clr-lightgreen);
+            cursor: pointer;
+        }
+    }
+
+    & :is(.DelButton.hidden, .EditButton.hidden, #editColumn, #deleteColumn, .editColumnCell.hidden, .deleteColumnCell.hidden) {
+        display: none;
+    }
+
+    & form[action="editbook"] button {
+        cursor: alias;
+        
+        &:is(:hover, :focus) {
+            background-color: var(--clr-lightgoldenrodyellow);
+        }
+    }
+
+    & .DelButton {
+        &:is(:hover, :focus) {
+            background-color: var(--clr-orange);
+        }
+    }
+
+    & button[name="delete_book"] {
+        background-color: var(--clr-orange);
+        scale: 1.2;
+
+        &:is(:hover, :focus){
+            background-color: var(--clr-orangered);
+        }
+    }
+
+    & .deleteConfirm {
+        background-color: var(--clr-lightgoldenrodyellow);
+    }
+
+    & #indexTable {
+        border: 1px solid;
+        border-color: var(--clr-primary-darkBlue);
+
+        & th {
+            border-color: var(--clr-primary-darkBlue);
+            background-color: var(--clr-lightseagreen);
+            height: 2.5em;
+            text-align: center;
+
+            &:hover {
+                background-color: rgb(74, 190, 185);
+            }
+        }
+
+        & tr {
+            border: 1px solid;
+            border-color: var(--clr-primary-lightBlue);
+
+            &:hover {
+                background-color: rgb(74, 190, 185) !important;
+            }
+
+            &:focus-within {
+                /* Apply background color when button is focused */
+                background-color: var(--clr-lightgoldenrodyellow) !important;
+            }
+        }
+
+        & tr:nth-of-type(2n) {
+            background-color: rgb(192, 196, 206);
+        }
+
+        & :is(th, td) {
+            padding: .25rem;
+        }
+    }
+
+    & .viewToggle {
+        margin-left: calc(100% - 32px);
+        margin-top: 10px;
+        background-color: var(--clr-lightblue);
+        border: none;
+        border-radius: .5rem;
+
+        & svg {
+            transform: translateX(-1px) translateY(1px);
+        }
     }
 }
 
-/* Set padding to keep content from hitting the edges */
+footer {
+    flex-direction: row;
+    position: sticky;
+    bottom: 0;
+    background-color: var(--clr-primary-darkBlue);
+    width: 100%;
+
+    & p {
+        margin-bottom: 0;
+    }
+}
 
 
+/* 
+Author: Robert Howell - Feb. 2024
+Attribution: The below 'switch' elements are derived of Matt Smith's codepen: https://codepen.io/AllThingsSmitty/pen/MmxxOz?editors=1100
+Codepen: https://codepen.io/AllThingsSmitty/pen/MmxxOz?editors=1100
+Date: 2-10-2024 
+*/
+.switch {
+    position:relative;
+    cursor: pointer;
+    display: none;
+    justify-content: space-between;
+    width: 55%;
+    margin-block: .5rem;
+    margin-inline: auto;
+
+    & input {
+        display: none;
+
+        &:checked + .slider{
+            background-color: var(--clr-lightgreen);
+        }
+
+        &:checked + .slider:before{
+            transform: translateX(15px);
+        }
+    }
+
+    & .slider {
+        width: 35px;
+        height: 20px;
+        background-color: var(--clr-lightblue);
+        margin-inline: 10px;
+        position: relative;
+        transition: .4s;
+        display: inline-block;
+        border-radius: 20px;
+
+        &:before {
+            position:absolute;
+            top: 4px;
+            left: 4px;
+            height: 12px;
+            width: 12px;
+            content: "";
+            background-color: var(--clr-White);
+            border-radius: 50%;
+            transition: .4s;
+        }
+    }
+
+    /* styles for mobile */
+    @media screen and (750px > width){
+        width: calc(max(30%, 130px));
+    }
+}
+
+#hero {
+    width: calc(100% + 2rem);
+    height: 400px;
+    max-width: initial;
+    transform: 
+        translateX(-1rem)
+        translateY(-1.5rem);
+
+    & img {
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        margin: 0 auto;
+        display: inline-block;
+        height: 100%;
+        width: 500%;
+        object-fit: cover;
+    }
+}
+
+#aboutSection {
+    & #logoPic {
+        width: 400px;
+        margin-top: -350px;
+        margin-bottom: 175px;
+        z-index: 1;
+        position: relative;
+        
+    }
+    & img {
+        width: 100%;
+        display: block;
+        margin: 0 auto;
+        border-radius: 25px;
+    }
+
+    & .card {
+        width: 75%;
+        margin: 4em auto 0 auto;
+    }
+}
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,

@@ -1,60 +1,90 @@
+<!-- ##########################################################################
+## Company: AgileStock
+## Engineer(s): Robert Howell, Noah St Mark, Branson Addington, David Poach, Alfredo Lezama
+## 
+## Create Date:    12/3/2023
+## Project Name:    AgileStock
+## Target Devices:    Web
+## Tool versions:    Flask 3
+## Description:   HTML for URI: /, /home
+## Dependencies:
+##   -packages(s):
+##      click==8.1.7
+##      Jinja2==3.1.2
+##      Werkzeug==3.0.1
+##
+## Revision: 1.5 - Markup validated
+## Revision: 1.4 - Added table view with grid toggle button
+## Revision: 1.3 - Form update for delete book
+## Revision: 1.2 - Form update for data pass
+## Revision: 1.1 - Updated book entries with table
+## Revision: 1.0 - File Created
+## Additional Comments: The inventory page opens from site navigation panel, "Inventory".
+##  Markup validation: https://validator.w3.org/
+##
+########################################################################## -->
 {% extends "layout.html" %}
 
 {% block content %}
 
-<div>
+<section>
+    <form action="/"><button value="table" name="view" type="submit" class="viewToggle"><svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg></button></form>
     <h1>Inventory</h1>
     <p class="lead">View a list of inventory items as scanned from AgileStock scanner.
     </p>
-    <div>
-        <div>
-            <h3>{{testBookN.title}}</h3>
-            <ul>
-                <li>Author: {{testBookN.author}}</li>
-                <li>Genre: {{testBookN.genre}}</li>
-                <li>ISBN: {{testBookN.isbn}}</li>
-                <li>Published Date: {{testBookN.publishedDate}}</li>
-                <li>Publisher: {{testBookN.publisher}}</li>
-            </ul>
-        </div>
-        <div>
-            <h3>Button Pressed: {{ booktitle }}</h3>
-            <form method="post">
-                <label for="title">Book Title</label>
-                <input id="title" name="title" type="text">
-                <input type="submit" value="POST form method" >
-            </form>
-        </div>
-        <div>
-            <table>
-                <thead>
-                    <th>BOOKID</th>
-                    <th>Edit</th>
-                    <th>ISBN</th>
-                    <th>TITLE</th>
-                    <th>AUTHOR</th>
-                    <th>PUBLISHER</th>
-                    <th>PUBLISHED_DATE</th>
-                    <th>GENRE</th>
+    <div class="flex-content">
+        {% for item in result %}
+            <div class="inner">
+                <img src="../static/images/book1.webp" alt="Book icon image." class="bookIcon">
+                <table >
+                    <tr>
+                        <td><b>Title:</b></td>
+                        <td class="col2">{{item.TITLE}}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Author:</b></td>
+                        <td class="col2">{{item.AUTHOR}}</td>
+                    </tr>
+                    <tr>
+                        <td><b>ISBN:</b></td>
+                        <td class="col2">{{item.ISBN}}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Publisher:</b></td>
+                        <td class="col2">{{item.PUBLISHER}}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Published Date:</b></td>
+                        <td class="col2">{{item.PUBLISHED_DATE}}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Genre:</b></td>
+                        <td class="col2">{{item.GENRE}}</td>
+                    </tr>
+                    <tr>
+                        <td><b>ID:</b></td>
+                        <td class="col2">{{item.BOOKID}}</td>
+                    </tr>
+                </table>
+                <div class="bookButtons">
+                    <form action="editbook"><button value="{{item.ISBN}}" name="isbn" type="submit" class="EditButton hidden">Edit</button></form>
+                    <button value="{{item.ISBN}}" name="{{item.BOOKID}}" type="submit" class="DelButton hidden">Delete</button>
+                </div>
+                <dialog class="deleteConfirm">
+                    <p>Are you sure you want to delete this book from inventory?<br><br><b>Title:</b> {{item.TITLE}}<br><b>Isbn:</b> {{item.ISBN}}</p>
+                    <div class="bookButtons">
+                        <button class="cancelAutofocus">Cancel</button>
+                        <form action="/API/Delete" method="POST">
+                            <button name="delete_book" value="{{item.BOOKID}}" type="submit">Confirm</button>
+                        </form>
+                    </div>
+                </dialog>
 
-                </thead>
-            {% for item in result %}
-            <tr>
-                <td>{{item.BOOKID}}</td>
-                <td><form action="editbook"><button value="{{item.ISBN}}" name="isbn" type="submit">Edit</button></form></td>
-                <td>{{item.ISBN}}</td>
-                <td>{{item.TITLE}}</td>
-                <td>{{item.AUTHOR}}</td>
-                <td>{{item.PUBLISHER}}</td>
-                <td>{{item.PUBLISHED_DATE}}</td>
-                <td>{{item.GENRE}}</td>
-            </tr>
-            {%endfor%}
-        </table>
-        </div>
-        
-        {% block scripts %}{% endblock %}
+            </div>
+        {%endfor%}
+    <!-- </table> -->
     </div>
-</div>
+    {% block scripts %}{% endblock %}
+</section>
 
 {% endblock %}

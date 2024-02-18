@@ -1,45 +1,61 @@
+<!-- ##########################################################################
+## Company: AgileStock
+## Engineer(s): Robert Howell
+## 
+## Create Date:    1/17/2023
+## Project Name:    AgileStock
+## Target Devices:    Web
+## Tool versions:    Flask 3
+## Description:   
+## Dependencies:
+##   -packages(s):
+##      click==8.1.7
+##      Jinja2==3.1.2
+##      Werkzeug==3.0.1
+##
+## Revision: 1.3 - Markup validated 
+## Revision: 1.2 - Edit book form markup updated
+## Revision: 1.1 - Updated page for book value import from python
+## Revision: 1.0 - File Created
+## Additional Comments: Edit page opens a form to change book details.
+##  Markup validation: https://validator.w3.org/
+##
+########################################################################## -->
 {% extends "layout.html" %}
 {% block content %}
 
-<div>
     <h1>Inventory</h1>
-    <p class="lead">View a list of inventory items as scanned from AgileStock scanner.
-    </p>
-    <div>
-        
-        <div>
-            <h3>Edit Book: {{ booktitle }}</h3>
-            <form method="post">
-                <p>
-                    <label for="title">Title</label>
-                    <input id="title" name="title" type="text">
-                </p>
-                <p>
-                    <label for="author">Author</label>
-                    <input id="author" name="author" type="text">
-                </p>
-                <p>
-                    <label for="publisher">Publisher</label>
-                    <input id="publisher" name="publisher" type="text">
-                </p>
-                <p>
-                    <label for="publishedDate">Published Date</label>
-                    <input id="publishedDate" name="publishedDate" type="text">
-                </p>
-                <p>
-                    <label for="genre">Genre</label>
-                    <input id="genre" name="genre" type="text">
-                </p>
-                <p>
-                    <label for="ISBN">ISBN</label>
-                    <input id="ISBN" name="ISBN" type="text">
-                </p>
-                <input type="submit" value="Submit">
-            </form>
-        </div>
-
-        {% block scripts %}{% endblock %}
+    <p class="lead">View a list of inventory items as scanned from AgileStock scanner.</p>
+    <div id="edit_Table_Container">
+        <h3>Edit Book: {{ book_to_edit.title }} - {{ book_to_edit.isbn }}</h3>
+        <form method="post">
+            <table id="edit_Table">
+                <tr>
+                    <td><label for="title">Title</label></td>
+                    <td><input id="title" name="title" type="text" value="{{book_to_edit.title}}"></td>
+                </tr>
+                <tr>
+                    <td><label for="author">Author</label></td>
+                    <td><input id="author" name="author" type="text" value="{{book_to_edit.author}}"></td>
+                </tr>
+                <tr>
+                    <td><label for="publisher">Publisher</label></td>
+                    <td><input id="publisher" name="publisher" type="text" value="{{book_to_edit.publisher}}"></td>
+                </tr>
+                <tr>
+                    <td><label for="publishedDate">Published Date</label></td>
+                    <td><input id="publishedDate" name="publishedDate" type="text" value="{{book_to_edit.publishedDate}}"></td>
+                </tr>
+                <tr>
+                    <td><label for="genre">Genre</label></td>
+                    <td><input id="genre" name="genre" type="text" value="{{book_to_edit.genre}}"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Submit"></td>
+                </tr>
+            </table>
+        </form>
     </div>
-</div>
-
+    {% block scripts %}{% endblock %}
 {% endblock %}

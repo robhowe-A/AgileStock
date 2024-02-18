@@ -1,0 +1,75 @@
+<!-- ##########################################################################
+## Company: AgileStock
+## Engineer(s): Robert Howell
+## 
+## Create Date:    2/11/2024
+## Project Name:    AgileStock
+## Target Devices:    Web
+## Tool versions:    Flask 3
+## Description:   HTML for URI: /, /home + table view at /?view=table
+## Dependencies:
+##   -packages(s):
+##      click==8.1.7
+##      Jinja2==3.1.2
+##      Werkzeug==3.0.1
+##
+## Revision: 1.1 - Markup validated 
+## Revision: 1.0 - File Created
+## Additional Comments: This page portrays book data, similar to index.html template
+##  in HTML table format. When the form button is clicked, the URL passes the form name
+##  as a query parameter. Then, views.py provides this template instead of index.html.
+##  Markup validation: https://validator.w3.org/
+##
+########################################################################## -->
+{% extends "layout.html" %}
+
+{% block content %}
+
+<section>
+    <form action="/"><button value="items" name="view" type="submit" class="viewToggle"><svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg></button></form>
+    <h1>Inventory</h1>
+    <p class="lead">View a list of inventory items as scanned from AgileStock scanner.
+    </p>
+    <div class="flex-content">
+        <table id="indexTable">
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>ISBN</th>
+                <th>Genre</th>
+                <th>ID</th>
+                <th>Publisher</th>
+                <th>Published Date</th>
+                <th id="editColumn" class="hidden">Edit</th>
+                <th id="deleteColumn" class="hidden">Delete</th>
+            </tr>
+        {% for item in result %}
+            <tr tabindex="0">
+                <td>{{item.TITLE}}</td>
+                <td>{{item.AUTHOR}}</td>
+                <td>{{item.ISBN}}</td>
+                <td>{{item.GENRE}}</td>
+                <td>{{item.BOOKID}}</td>
+                <td>{{item.PUBLISHER}}</td>
+                <td>{{item.PUBLISHED_DATE}}</td>
+                <td class="editColumnCell hidden"><form action="editbook"><button value="{{item.ISBN}}" name="isbn" type="submit" class="EditButton hidden">Edit</button></form></td>
+                <td class="deleteColumnCell hidden"><button value="{{item.ISBN}}" name="{{item.BOOKID}}" type="submit" class="DelButton hidden">Delete</button><dialog class="deleteConfirm">
+                    <p>Are you sure you want to delete this book from inventory?<br><br><b>Title:</b> {{item.TITLE}}<br><b>Isbn:</b> {{item.ISBN}}</p>
+                    <div class="bookButtons">
+                        <button class="cancelAutofocus">Cancel</button>
+                        <form action="/API/Delete" method="POST">
+                            <button name="delete_book" value="{{item.BOOKID}}" type="submit">Confirm</button>
+                        </form>
+                    </div>
+                </dialog></td>
+                
+            </tr>
+            {%endfor%}
+        </table>
+
+    <!-- </table> -->
+    </div>
+    {% block scripts %}{% endblock %}
+</section>
+
+{% endblock %}

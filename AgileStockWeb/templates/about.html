@@ -1,24 +1,49 @@
+<!-- ##########################################################################
+## Company: AgileStock
+## Engineer(s): Robert Howell
+## 
+## Create Date:    12/3/2023
+## Project Name:    AgileStock
+## Target Devices:    Web
+## Tool versions:    Flask 3
+## Description:   HTML for URI: /about
+## Dependencies:
+##   -packages(s):
+##      click==8.1.7
+##      Jinja2==3.1.2
+##      Werkzeug==3.0.1
+##
+## Revision: 1.3 - Markup validated 
+## Revision: 1.2 - Hero section added; added img assets
+## Revision: 1.1 - Markup edited
+## Revision: 1.0 - File Created
+## Additional Comments: The about page opens from site navigation panel, "About".
+##  Markup validation: https://validator.w3.org/
+##
+########################################################################## -->
 {% extends "layout.html" %}
 
 {% block content %}
-<section class="about">
-    <h2>{{ title }}.</h2>
-    <h3>{{ message }}</h3>
+<div id="hero"><img src="../static/images/pexels-pixabay-256559.jpg" alt="A library's book hallway."></div>
+<section id="aboutSection">
+  <img id="logoPic" src="../static/images/image.webp" alt="AgileStock base station software screenshot shown on a raspberry pi.">
+  <h2>{{ title }}</h2>
   <div class="card-row">
+    <p>Use the AgileStock application to keep record and manage your product inventory. Our solution provides quick and easy item entry pivoting barcode technology and database storage.</p>
     <div class="card">
-      <img src="../static/images/pexels-pixabay-256559.jpg" alt="A library's book hallway.">
+      <img src="../static/images/20240124_174500.webp" alt="AgileStock base station software screenshot shown on a raspberry pi.">
       <h3>1. The Base Station</h3>
-      <p>Use Agile Stock's base station to scan items into your inventory.</p>
+      <p>Agile Stock's base station scans items into your inventory.</p>
     </div>
     <div class="card">
-      <img src="../static/images/pexels-lukas-574086.jpg" alt="A laptop resting on a desk.">
+      <img src="../static/images/2024-02-10__19_36_14-AgileStock_Interface.png" alt="AgileStock's base station showing item scan details.">
       <h3>2. Upload</h3>
-      <p>After our scanner system has found the item, confirm the details and click upload.</p>
+      <p>Our scanner system finds the item, after the item's details are confirmed and the user clicks upload.</p>
     </div>
     <div class="card">
       <img src="../static/images/pexels-pixabay-4158.jpg" alt="Electronic devices of differnet sizes on a table.">
       <h3>3. View</h3>
-      <p>The Agile Stock website keeps your inventory records in an easy-to-view inventory panel.</p>
+      <p>The Agile Stock website keeps your inventory records in an easy-to-view inventory panel, available to any device.</p>
     </div>
   </div>
 </section>
