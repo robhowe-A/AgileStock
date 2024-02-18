@@ -1,12 +1,12 @@
 ##########################################################################
 ## Company: AgileStock
 ## Engineer(s): Robert Howell, Branson Addington, David Poach, Noah St Mark, Alfredo Lezama
-## 
+##
 ## Create Date:    12/3/2023
 ## Project Name:    AgileStock
 ## Target Devices:    Web
 ## Tool versions:    Python 3.11
-## Description:   API initialization. app.route() decorators allow URL 
+## Description:   API initialization. app.route() decorators allow URL
 ##  listeners for passing data from python to HTML.
 ## Dependencies:
 ##   -module(s):
@@ -41,11 +41,12 @@ from flask import render_template, request, redirect
 from AgileStockWeb import app, db
 from AgileStockWeb.models.book import AS_BOOK
 
+
 @app.route("/", methods=["GET", "POST"])
 @app.route("/home", methods=["GET", "POST"])
 def home():
     """Renders the home page."""
-    
+
     AS_BOOKresult = db.fetch_fromAS_BOOK()
     if request.method == "POST":
         title = request.form["title"]
@@ -71,7 +72,7 @@ def home():
                 title="Inventory",
                 result=AS_BOOKresult,
                 year=datetime.now().year,
-                )
+            )
 
 
 # HTTP PUT method mockup -- untested, just sample code
@@ -140,25 +141,26 @@ def editBook():
     # complete the change.
     if request.method == "POST":
         try:
-            entity_id = db.select_fromINVENTORY_ISBN(request.args['isbn'])
+            entity_id = db.select_fromINVENTORY_ISBN(request.args["isbn"])
 
-            #Since editform has a post, each attribute is edited from data ingress
-            db.edit_title_AS_BOOK(request.form["title"], entity_id[0]['BOOKID'])
-            db.edit_author_AS_BOOK(request.form["author"], entity_id[0]['BOOKID'])
-            db.edit_published_date_AS_BOOK(request.form["publishedDate"], entity_id[0]['BOOKID'])
-            db.edit_publisher_AS_BOOK(request.form["publisher"], entity_id[0]['BOOKID'])
-            db.edit_genre_AS_BOOK(request.form["genre"], entity_id[0]['BOOKID'])
+            # Since editform has a post, each attribute is edited from data ingress
+            db.edit_title_AS_BOOK(request.form["title"], entity_id[0]["BOOKID"])
+            db.edit_author_AS_BOOK(request.form["author"], entity_id[0]["BOOKID"])
+            db.edit_published_date_AS_BOOK(
+                request.form["publishedDate"], entity_id[0]["BOOKID"]
+            )
+            db.edit_publisher_AS_BOOK(request.form["publisher"], entity_id[0]["BOOKID"])
+            db.edit_genre_AS_BOOK(request.form["genre"], entity_id[0]["BOOKID"])
 
-
-            #updates have succeeded, fetch the list of inventory and redirect user to inv page
+            # updates have succeeded, fetch the list of inventory and redirect user to inv page
             AS_BOOKresult = db.fetch_fromAS_BOOK()
 
             return render_template(
-            "index.html",
-            title="Inventory",
-            result=AS_BOOKresult,
-            year=datetime.now().year,
-        )
+                "index.html",
+                title="Inventory",
+                result=AS_BOOKresult,
+                year=datetime.now().year,
+            )
         except:
             return {"Server error": "The book's update could not process successfully."}
 
@@ -207,12 +209,12 @@ def entity(entity_id):
             "message": f"Updated database entity if this request response == 200.",
             "method": request.method,
         }
-    
+
     if request.method == "DELETE":
-        #match the URL id to the JSON id, requested for delete
+        # match the URL id to the JSON id, requested for delete
         if entity_id == int(request.json[0]["delete_book_id"]):
-            
-            #call database function to delete the item
+
+            # call database function to delete the item
             db.delete_AS_BOOK(request.json[0]["delete_book_id"])
             return {
                 "id": entity_id,
@@ -220,13 +222,14 @@ def entity(entity_id):
                 "method": request.method,
             }
         else:
-            #unsuccessful database operation: return json message to caller
+            # unsuccessful database operation: return json message to caller
             return {
                 "id": entity_id,
                 "message": f"Delete method called. Unable to delete the item due to ID mismatch.",
                 "entity_id": entity_id,
-                "BOOKID": request.json[0]["delete_book_id"]
+                "BOOKID": request.json[0]["delete_book_id"],
             }
+
 
 @app.route("/api/inventoryitem/isbnsearch/<int:book_isbn>", methods=["GET"])
 def book(book_isbn):
@@ -235,9 +238,10 @@ def book(book_isbn):
         book = db.select_fromINVENTORY_ISBN(book_isbn)
         return book
 
-@app.route("/API/Delete", methods=['POST'])
+
+@app.route("/API/Delete", methods=["POST"])
 def delete_Book():
-    print ("Deleting book . . .")
-    print (request.form["delete_book"])
+    print("Deleting book . . .")
+    print(request.form["delete_book"])
     db.delete_AS_BOOK(request.form["delete_book"])
     return redirect(request.referrer)

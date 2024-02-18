@@ -1,7 +1,7 @@
 ##########################################################################
 ## Company: AgileStock
 ## Engineer(s): Robert Howell, Branson Addington, David Poach
-## 
+##
 ## Create Date:    12/3/2023
 ## Project Name:    AgileStock
 ## Target Devices:    Web
@@ -211,8 +211,6 @@ class CreateDatabase(Database):
     def delete_AS_BOOK(self, entity_id):
         try:
             logger.info(f"Deleting book...")
-            self._runSQL(
-                f"""DELETE FROM AS_BOOK WHERE BOOKID = {entity_id}"""
-            )
+            self._runSQL(f"""DELETE FROM AS_BOOK WHERE BOOKID = {entity_id}""")
         except Exception as e:
             logger.error(f"Error with DELETE from table AS_BOOK: {e}")

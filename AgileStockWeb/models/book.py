@@ -1,7 +1,7 @@
 ##########################################################################
 ## Company: AgileStock
 ## Engineer(s): Robert Howell
-## 
+##
 ## Create Date:    12/3/2023
 ## Project Name:    AgileStock
 ## Target Devices:    Web
@@ -25,6 +25,7 @@
 ## Additional Comments: AS_BOOK class defined for database, web server
 ##
 ##########################################################################
+
 
 class AS_BOOK:
     def __init__(self, title, author, publisher, publishedDate, genre, isbn):

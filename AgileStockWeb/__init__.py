@@ -1,7 +1,7 @@
 ##########################################################################
 ## Company: AgileStock
 ## Engineer(s): Robert Howell, Branson Addington
-## 
+##
 ## Create Date:    12/3/2023
 ## Project Name:    AgileStock
 ## Target Devices:    Web
@@ -77,14 +77,14 @@ db.insert_intoAS_BOOK(
     APIexampleitem_InventoryFromScannerApp.publishedDate,
     APIexampleitem_InventoryFromScannerApp.genre,
 )
-db.insert_intoAS_BOOK(12345, "ASBOOK1","TEAM_ALPHA", "CSC480C", 2024, "NONFICTION")
-db.insert_intoAS_BOOK(123456, "ASBOOK2","TEAM_ALPHA", "CSC480C", 2024, "NONFICTION")
-db.insert_intoAS_BOOK(123457, "ASBOOK3","TEAM_ALPHA", "CSC480C", 2024, "NONFICTION")
-db.insert_intoAS_BOOK(123458, "ASBOOK4","TEAM_ALPHA", "CSC480C", 2024, "NONFICTION")
-db.insert_intoAS_BOOK(123459, "ASBOOK5","TEAM_ALPHA", "CSC480C", 2024, "NONFICTION")
-db.insert_intoAS_BOOK(123450, "ASBOOK6","TEAM_ALPHA", "CSC480C", 2024, "NONFICTION")
-db.insert_intoAS_BOOK(1234511, "ASBOOK7","TEAM_ALPHA", "CSC480C", 2024, "NONFICTION")
-db.insert_intoAS_BOOK(1234512, "ASBOOK8","TEAM_ALPHA", "CSC480C", 2024, "NONFICTION")
-db.insert_intoAS_BOOK(1234513, "ASBOOK9","TEAM_ALPHA", "CSC480C", 2024, "NONFICTION")
-db.insert_intoAS_BOOK(1234514, "ASBOOK10","TEAM_ALPHA", "CSC480C", 2024, "NONFICTION")
-# from AgileStockWeb import views
+db.insert_intoAS_BOOK(12345, "ASBOOK1", "TEAM_ALPHA", "CSC480C", 2024, "NONFICTION")
+db.insert_intoAS_BOOK(123456, "ASBOOK2", "TEAM_ALPHA", "CSC480C", 2024, "NONFICTION")
+db.insert_intoAS_BOOK(123457, "ASBOOK3", "TEAM_ALPHA", "CSC480C", 2024, "NONFICTION")
+db.insert_intoAS_BOOK(123458, "ASBOOK4", "TEAM_ALPHA", "CSC480C", 2024, "NONFICTION")
+db.insert_intoAS_BOOK(123459, "ASBOOK5", "TEAM_ALPHA", "CSC480C", 2024, "NONFICTION")
+db.insert_intoAS_BOOK(123450, "ASBOOK6", "TEAM_ALPHA", "CSC480C", 2024, "NONFICTION")
+db.insert_intoAS_BOOK(1234511, "ASBOOK7", "TEAM_ALPHA", "CSC480C", 2024, "NONFICTION")
+db.insert_intoAS_BOOK(1234512, "ASBOOK8", "TEAM_ALPHA", "CSC480C", 2024, "NONFICTION")
+db.insert_intoAS_BOOK(1234513, "ASBOOK9", "TEAM_ALPHA", "CSC480C", 2024, "NONFICTION")
+db.insert_intoAS_BOOK(1234514, "ASBOOK10", "TEAM_ALPHA", "CSC480C", 2024, "NONFICTION")
+from AgileStockWeb import views
